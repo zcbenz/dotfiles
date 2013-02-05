@@ -1,0 +1,2 @@
+markdown-1.2.2.vba: call delete('/home/kitten/.vim/ftdetect/markdown.vim')|call delete('/home/kitten/.vim/snippets/markdown.snippets')|call delete('/home/kitten/.vim/syntax/markdown.vim')
+Align.vba: call delete('/home/kitten/.vim/plugin/AlignPlugin.vim')|call delete('/home/kitten/.vim/plugin/AlignMapsPlugin.vim')|call delete('/home/kitten/.vim/plugin/cecutil.vim')|call delete('/home/kitten/.vim/doc/Align.txt')|call delete('/home/kitten/.vim/autoload/Align.vim')|call delete('/home/kitten/.vim/autoload/AlignMaps.vim')
