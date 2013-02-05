@@ -1,0 +1,27 @@
+#!/bin/bash
+
+TARGET=${1:-~}
+
+# Root of dotfiles
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+
+BACKUP=`mktemp -d /tmp/dotfiles_backup_XXXXXX`
+echo "Old files will be put in $BACKUP"
+
+function copy_and_backup {
+  if [ -e "$TARGET/$1" ]; then
+    mv "$TARGET/$1" "$BACKUP/$1"
+  fi
+  cp -r "$DIR/$1" "$TARGET/$1"
+}
+
+echo -n 'Copying file...'
+copy_and_backup .vim
+copy_and_backup .vimrc
+copy_and_backup .custom_bashrc
+copy_and_backup .tools_aliases
+echo "[OK]"
+
+echo -n 'Loading new environment...'
+source "$TARGET/.custom_bashrc" nofortune
+echo "[OK]"

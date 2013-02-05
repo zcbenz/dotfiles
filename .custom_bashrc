@@ -33,4 +33,4 @@ if [[ "$OS" != 'darwin' ]]; then
 fi
 
 # Show me fortune at last
-fortune
+[ -z $1 ] && fortune
