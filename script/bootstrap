@@ -1,6 +1,15 @@
 #!/bin/bash
 
 TARGET=${1:-~}
+TARGET_LITERAL=$TARGET
+if [[ $TARGET_LITERAL == ~ ]]; then
+  TARGET_LITERAL='~'
+fi
+
+if [ ! -d $TARGET ]; then
+  echo "Invalid target: $TARGET"
+  exit 1
+fi
 
 # Root of dotfiles
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
@@ -22,6 +31,41 @@ copy_and_backup .custom_bashrc
 copy_and_backup .tools_aliases
 echo "[OK]"
 
+echo -n 'Injecting .bashrc...'
+LASTLINE_OF_BASHRC=$(tail -n 1 "$TARGET/.bashrc" 2>/dev/null)
+if [[ ! -e "$TARGET/.bashrc" ]]; then
+  echo "source $TARGET_LITERAL/.custom_bashrc" > "$TARGET/.bashrc"
+elif [[ $LASTLINE_OF_BASHRC != "source $TARGET_LITERAL/.custom_bashrc" ]]; then
+  echo "source $TARGET_LITERAL/.custom_bashrc" >> "$TARGET/.bashrc"
+fi
+echo "[OK]"
+
+function reuse_or_create_dir {
+  if [ ! -e "$TARGET/$1" ]; then
+    mkdir "$TARGET/$1"
+  elif [ ! -d "$TARGET/$1" ]; then
+    mv "$TARGET/$1" "$BACKUP/$1"
+    mkdir "$TARGET/$1"
+  fi
+}
+
+echo -n 'Creating bin and codes...'
+reuse_or_create_dir bin
+reuse_or_create_dir codes
+echo "[OK]"
+
+if [ ! -e "$TARGET/bin/depot_tools" ]; then
+  echo 'Getting depot_tools...'
+  git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$TARGET/bin/depot_tools"
+fi
+
+if [ ! -e "$TARGET/codes/xunlei-lixian" ]; then
+  echo 'Getting xunlei-lixian...'
+  git clone https://github.com/iambus/xunlei-lixian.git "$TARGET/codes/xunlei-lixian"
+fi
+
 echo -n 'Loading new environment...'
 source "$TARGET/.custom_bashrc" nofortune
 echo "[OK]"
+
+exit 0
