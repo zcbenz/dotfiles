@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export PATH=$PATH:~/bin/depot_tools
+alias xunlei='python ~/codes/xunlei-lixian/lixian_cli.py'
