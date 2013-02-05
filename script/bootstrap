@@ -12,14 +12,17 @@ if [ ! -d $TARGET ]; then
 fi
 
 # Root of dotfiles
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+SOURCE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+
+# Include utils
+source $SOURCE/script/bash_utils
 
 BACKUP=`mktemp -d /tmp/dotfiles_backup_XXXXXX`
 echo "Old files will be put in $BACKUP"
 
 function link_and_backup {
   [ -e "$TARGET/$1" ] && mv "$TARGET/$1" "$BACKUP/$1"
-  ln -s "$DIR/$2" "$TARGET/$1"
+  ln -s "$SOURCE/$2" "$TARGET/$1"
 }
 
 echo -n 'Copying file...'
@@ -27,7 +30,7 @@ link_and_backup .vim vim/.vim
 link_and_backup .vimrc vim/.vimrc
 link_and_backup .custom_bashrc bash/.bashrc
 link_and_backup .tools_aliases bash/.tools_aliases
-[ -e "$TARGET/.gitconfig" ] || cp "$DIR/git/.gitconfig" "$TARGET/.gitconfig"
+[ -e "$TARGET/.gitconfig" ] || cp "$SOURCE/git/.gitconfig" "$TARGET/.gitconfig"
 echo "[OK]"
 
 echo -n 'Injecting .bashrc...'
@@ -52,6 +55,12 @@ echo -n 'Creating bin and codes...'
 reuse_or_create_dir bin
 reuse_or_create_dir codes
 echo "[OK]"
+
+if [[ $PLATFORM == 'darwin' ]] && ! has_command brew; then
+  echo 'Install Homebrew...'
+  ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+  echo "[OK]"
+fi
 
 if [ ! -e "$TARGET/bin/depot_tools" ]; then
   echo 'Getting depot_tools...'

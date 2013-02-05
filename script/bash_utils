@@ -1,0 +1,25 @@
+#!/bin/bash
+
+function has_command {
+  if command -v $1 >/dev/null 2>&1
+  then return 0
+  else return 1
+  fi 
+}
+
+function cross_install {
+  if has_command yum; then
+    INSTALL='sudo yum install'
+  elif has_command apt-get; then
+    INSTALL='sudo apt-get install'
+  elif has_command brew; then
+    INSTALL='brew install'
+  else
+    echo 'Cannot find install tool for current platform'
+    return 1
+  fi
+  $INSTALL $1
+}
+
+PLATFORM=${OSTYPE//[0-9.]/} # remove trailing version like in darwin9.0
+

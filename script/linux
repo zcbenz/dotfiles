@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Root of dotfiles
+SOURCE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+
+# Include utils
+source $SOURCE/script/bash_utils
+
+echo 'Install system requirements...'
+cross_install git fortune-mod
+
