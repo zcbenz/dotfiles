@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Convient settings
-alias sudo='sudo env PATH=$PATH'
+alias sudo='sudo env PATH=$PATH' # sudo with current PATH
 alias cn='env LANG=zh_CN.UTF-8 '
 function mkcd ()
 {
@@ -27,7 +27,7 @@ export EDITOR=vim
 alias vi="vim -p"
 
 # OS specific commands
-OS=${OSTYPE//[0-9.]/}
+OS=${OSTYPE//[0-9.]/} # remove trailing version like in darwin9.0
 if [[ "$OS" != 'darwin' ]]; then
   alias open="xdg-open"
 fi
