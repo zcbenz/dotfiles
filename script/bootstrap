@@ -64,6 +64,13 @@ if [ ! -e "$TARGET/codes/xunlei-lixian" ]; then
   git clone https://github.com/iambus/xunlei-lixian.git "$TARGET/codes/xunlei-lixian"
 fi
 
+if [ ! -e "$TARGET/bin/hub" ]; then
+  echo -n 'Getting hub...'
+  curl http://defunkt.io/hub/standalone -sLo $TARGET/bin/hub &&
+      chmod +x $TARGET/bin/hub
+  echo '[OK]'
+fi
+
 echo -n 'Loading new environment...'
 source "$TARGET/.custom_bashrc" nofortune
 echo "[OK]"
