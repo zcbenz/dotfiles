@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Convient settings
+alias la='ls -a'
+alias ll='ls -l'
 alias sudo='sudo env PATH=$PATH' # sudo with current PATH
 alias cn='env LANG=zh_CN.UTF-8 '
 function mkcd ()

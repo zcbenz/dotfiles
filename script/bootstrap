@@ -17,18 +17,17 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 BACKUP=`mktemp -d /tmp/dotfiles_backup_XXXXXX`
 echo "Old files will be put in $BACKUP"
 
-function copy_and_backup {
-  if [ -e "$TARGET/$1" ]; then
-    mv "$TARGET/$1" "$BACKUP/$1"
-  fi
-  cp -r "$DIR/$1" "$TARGET/$1"
+function link_and_backup {
+  [ -e "$TARGET/$1" ] && mv "$TARGET/$1" "$BACKUP/$1"
+  ln -s "$DIR/$2" "$TARGET/$1"
 }
 
 echo -n 'Copying file...'
-copy_and_backup .vim
-copy_and_backup .vimrc
-copy_and_backup .custom_bashrc
-copy_and_backup .tools_aliases
+link_and_backup .vim vim/.vim
+link_and_backup .vimrc vim/.vimrc
+link_and_backup .custom_bashrc bash/.bashrc
+link_and_backup .tools_aliases bash/.tools_aliases
+[ -e "$TARGET/.gitconfig" ] || cp "$DIR/git/.gitconfig" "$TARGET/.gitconfig"
 echo "[OK]"
 
 echo -n 'Injecting .bashrc...'
