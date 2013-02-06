@@ -87,6 +87,7 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
       cross_install mosh
     fi
     has_command ohcount || cross_install ohcount
+    has_command g++ || cross_install build-essential automake autotools-dev
   elif [[ $OS == 'Fedora' ]]; then
     if ! has_command mosh; then
       cross_install mosh
