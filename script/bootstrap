@@ -35,10 +35,19 @@ LASTLINE_OF_BASHRC=$(tail -n 1 "$TARGET/.bashrc" 2>/dev/null)
 LASTLINE_TO_BE="source $TARGET_LITERAL/.custom_bashrc"
 if [[ ! -e "$TARGET/.bashrc" ]]; then
   echo $LASTLINE_TO_BE > "$TARGET/.bashrc"
+  success "Create $TARGET_LITERAL/.bashrc"
 elif [[ $LASTLINE_OF_BASHRC != $LASTLINE_TO_BE ]]; then
   echo $LASTLINE_TO_BE >> "$TARGET/.bashrc"
+  success "Inject $TARGET_LITERAL/.bashrc"
 fi
-success 'Inject .bashrc'
+
+SUDOER_LINE="$USER  ALL=(ALL)       NOPASSWD: ALL"
+if ! sudo grep -q "$SUDOER_LINE" /etc/sudoers; then
+  sudo cp /etc/sudoers $BACKUP
+  sudo bash -c 'echo >> /etc/sudoers'
+  sudo bash -c "echo \"$SUDOER_LINE\" >> /etc/sudoers"
+  success 'Inject /etc/sudoers'
+fi
 
 cp /etc/hosts $BACKUP
 source $SOURCE/script/update_hosts $SOURCE/etc/hosts
