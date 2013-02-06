@@ -1,49 +1,48 @@
 #!/bin/bash
 
-TARGET=${1:-~}
-TARGET_LITERAL=$TARGET
-if [[ $TARGET_LITERAL == ~ ]]; then
-  TARGET_LITERAL='~'
-fi
-
-if [ ! -d $TARGET ]; then
-  echo "Invalid target: $TARGET"
-  exit 1
-fi
-
 # Root of dotfiles
 SOURCE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 
 # Include utils
 source $SOURCE/script/bash_utils
 
+TARGET=${1:-~}
+if [ ! -d $TARGET ]; then
+  fail "Invalid target: $TARGET"
+  exit 1
+fi
+
+TARGET_LITERAL=$TARGET
+[[ $TARGET_LITERAL == ~ ]] && TARGET_LITERAL='~' # reduce to '~'
+
 BACKUP=`mktemp -d /tmp/dotfiles_backup_XXXXXX`
-echo "Old files will be put in $BACKUP"
+info "Old files will be put in $BACKUP"
 
 function link_and_backup {
   [ -e "$TARGET/$1" ] && mv "$TARGET/$1" "$BACKUP/$1"
   ln -s "$SOURCE/$2" "$TARGET/$1"
 }
 
-echo -n 'Copying file...'
 link_and_backup .vim vim/.vim
 link_and_backup .vimrc vim/.vimrc
 link_and_backup .custom_bashrc bash/.bashrc
 link_and_backup .tools_aliases bash/.tools_aliases
+# .gitconfig contains machine-dependent information so don't link
 [ -e "$TARGET/.gitconfig" ] || cp "$SOURCE/git/.gitconfig" "$TARGET/.gitconfig"
-echo "[OK]"
+success "Link configuration files"
 
-echo -n 'Injecting .bashrc...'
 LASTLINE_OF_BASHRC=$(tail -n 1 "$TARGET/.bashrc" 2>/dev/null)
+LASTLINE_TO_BE="source $TARGET_LITERAL/.custom_bashrc"
 if [[ ! -e "$TARGET/.bashrc" ]]; then
-  echo "source $TARGET_LITERAL/.custom_bashrc" > "$TARGET/.bashrc"
-elif [[ $LASTLINE_OF_BASHRC != "source $TARGET_LITERAL/.custom_bashrc" ]]; then
-  echo "source $TARGET_LITERAL/.custom_bashrc" >> "$TARGET/.bashrc"
+  echo $LASTLINE_TO_BE > "$TARGET/.bashrc"
+elif [[ $LASTLINE_OF_BASHRC != $LASTLINE_TO_BE ]]; then
+  echo $LASTLINE_TO_BE >> "$TARGET/.bashrc"
 fi
-echo "[OK]"
+success 'Inject .bashrc'
 
 cp /etc/hosts $BACKUP
 source $SOURCE/script/update_hosts $SOURCE/etc/hosts
+success 'Update hosts'
 
 function reuse_or_create_dir {
   if [ ! -e "$TARGET/$1" ]; then
@@ -54,27 +53,27 @@ function reuse_or_create_dir {
   fi
 }
 
-echo -n 'Creating bin and codes...'
 reuse_or_create_dir bin
 reuse_or_create_dir codes
-echo "[OK]"
+success 'Create bin and codes'
 
 if [[ $PLATFORM == 'darwin' ]]; then
   if ! has_command brew; then
-    echo -n 'Install Homebrew...'
+    progress 'Installng Homebrew'
     ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-    echo "[OK]"
+    success "Homebrew installed"
     brew update
   fi
 
-  echo 'Install other usefull tools..'
+  progress 'Installing other useful tools'
   has_command git || cross_install git
   has_command tree || cross_install tree
   has_command fortune || cross_install fortune
   has_command mosh || cross_install mobile-shell
   has_command ohcount || cross_install ohcount
+  success "Tools installed"
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
-  echo 'Install system requirements...'
+  progress 'Installing system tools'
   has_command git || cross_install git
   has_command tree || cross_install tree
   has_command fortune || cross_install fortune-mod
@@ -93,28 +92,30 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
       cross_install mosh
     fi
   fi
+  success "Tools installed"
 fi
 
 if [ ! -e "$TARGET/bin/depot_tools" ]; then
-  echo 'Getting depot_tools...'
+  progress 'Getting depot_tools'
   git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$TARGET/bin/depot_tools"
+  success 'depot_tools downloaded'
 fi
 
 if [ ! -e "$TARGET/codes/xunlei-lixian" ]; then
-  echo 'Getting xunlei-lixian...'
+  progress 'Getting xunlei-lixian'
   git clone https://github.com/iambus/xunlei-lixian.git "$TARGET/codes/xunlei-lixian"
+  success 'xunlei-lixian downloaded'
 fi
 
 if [ ! -e "$TARGET/bin/hub" ]; then
-  echo -n 'Getting hub...'
+  progress 'Getting hub'
   curl http://defunkt.io/hub/standalone -sLo $TARGET/bin/hub &&
       chmod +x $TARGET/bin/hub
-  echo '[OK]'
+  success 'hub downloaded'
 fi
 
-echo -n 'Loading new environment...'
 source "$TARGET/.custom_bashrc" nofortune
-echo "[OK]"
+success 'Load new environment'
 
 exit 0
 

@@ -1,5 +1,26 @@
 #!/bin/bash
 
+progress () {
+  printf "  [ \033[00;34m..\033[0m ] $1\n"
+}
+
+info () {
+  printf "  [\033[0;33mINFO\033[0m] $1\n"
+}
+
+user () {
+  printf "\r  [ \033[0;33m?\033[0m ] $1 "
+}
+
+success () {
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
+
+fail () {
+  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  exit 1
+}
+
 function has_command {
   if command -v $1 >/dev/null 2>&1
   then return 0

@@ -6,15 +6,11 @@ WHERE=${1:-$HOSTS}
 HOST_LEAD='### BEGIN GENERATED DOTFILES CONTENT'
 HOST_TAIL='### END GENERATED DOTFILES CONTENT'
 if grep -q DOTFILES /etc/hosts; then
-  echo -n 'Updating hosts...'
   sudo sed -i -e "/$HOST_LEAD/,/$HOST_TAIL/{ /$HOST_LEAD/{p; r $WHERE
                   }; /$HOST_TAIL/p; d }" /etc/hosts
-  echo "[OK]"
 else
-  echo -n 'Adding new hosts...'
   sudo bash -c 'echo >> /etc/hosts'
   sudo bash -c "echo \"$HOST_LEAD\" >> /etc/hosts"
   sudo bash -c "cat '$WHERE' >> /etc/hosts"
   sudo bash -c "echo \"$HOST_TAIL\" >> /etc/hosts"
-  echo "[OK]"
 fi
