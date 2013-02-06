@@ -23,3 +23,9 @@ function cross_install {
 
 PLATFORM=${OSTYPE//[0-9.]/} # remove trailing version like in darwin9.0
 
+case $PLATFORM in
+  linux-gnu) OS=$(head -n 1 /etc/issue | awk '{ print $1 }') ;;
+  darwin) OS=OSX ;;
+  *) OS=OTHER ;;
+esac
+

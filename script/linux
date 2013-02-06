@@ -9,3 +9,16 @@ source $SOURCE/script/bash_utils
 echo 'Install system requirements...'
 cross_install git fortune-mod
 
+if [[ $OS == 'Ubuntu' ]]; then
+  if ! has_command mosh; then
+    cross_install python-software-properties software-properties-common
+    sudo add-apt-repository ppa:keithw/mosh
+    sudo apt-get update
+    cross_install install mosh
+  fi
+elif [[ $OS == 'Fedora' ]]; then
+  if ! has_command mosh; then
+    cross_install install mosh
+  fi
+fi
+

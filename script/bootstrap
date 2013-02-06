@@ -56,10 +56,17 @@ reuse_or_create_dir bin
 reuse_or_create_dir codes
 echo "[OK]"
 
-if [[ $PLATFORM == 'darwin' ]] && ! has_command brew; then
-  echo 'Install Homebrew...'
-  ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-  echo "[OK]"
+if [[ $PLATFORM == 'darwin' ]]; then
+  if ! has_command brew; then
+    echo -n 'Install Homebrew...'
+    ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+    echo "[OK]"
+  fi
+
+  if ! has_command mosh; then
+    echo 'Install mosh...'
+    brew install mobile-shell
+  fi
 fi
 
 if [ ! -e "$TARGET/bin/depot_tools" ]; then
@@ -84,3 +91,4 @@ source "$TARGET/.custom_bashrc" nofortune
 echo "[OK]"
 
 exit 0
+
