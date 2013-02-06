@@ -1,0 +1,46 @@
+#!/bin/bash
+
+if ! DOWNLOAD_PAGE=$(curl -fsSkL http://nodejs.org/download/); then
+  exit 1;
+fi
+
+NODE_VERSION=$(echo "$DOWNLOAD_PAGE" \
+               | awk '/Current version:/ { print }' \
+               | awk -F"[<>]" '{ print $5 }')
+
+# Test system's node version if we have node installed
+SYSTEM_NODE_VERSION='v0.0.0'
+command -v node >/dev/null 2>&1 && SYSTEM_NODE_VERSION=`node -v`
+
+if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
+  case $OSTYPE in
+    darwin*) NODE_PLATFORM=darwin ;;
+    linux*) NODE_PLATFORM=linux ;;
+    *) echo "Unsupported platform $OSTYPE" && exit 1 ;;
+  esac
+
+  if $(uname -a | grep 'x86_64'); then
+    NODE_ARCH=x64
+  else
+    NODE_ARCH=x86
+  fi
+
+  # Download node and untar
+  NODE_DIST_NAME="node-$NODE_VERSION-$NODE_PLATFORM-$NODE_ARCH"
+  NODE_TARBALL_URL="http://nodejs.org/dist/$NODE_VERSION/$NODE_DIST_NAME.tar.gz"
+  TEMP_DIR=`mktemp -d /tmp/dotfiles_node_XXXXXX`
+  cd "$TEMP_DIR"
+  curl -fsSkL $NODE_TARBALL_URL | tar -zx || exit 1
+
+  # Install
+  rm $NODE_DIST_NAME/ChangeLog
+  rm $NODE_DIST_NAME/LICENSE
+  rm $NODE_DIST_NAME/README.md
+  sudo cp -r $NODE_DIST_NAME/* /usr/local/
+
+  # Clean
+  rm -rf $NODE_DIST_NAME
+  cd - > /dev/null
+  rm -rf $TEMP_DIR
+fi
+

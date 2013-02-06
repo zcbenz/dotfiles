@@ -95,6 +95,17 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
   success "Tools installed"
 fi
 
+progress 'Updating node'
+if source "$SOURCE/script/update_node"; then
+  if [[ $NODE_VERSION == $SYSTEM_NODE_VERSION ]]; then
+    success 'Current node is already latest'
+  else
+    success "Node is updated to $NODE_VERSION"
+  fi
+else
+  fail 'Cannot update node'
+fi
+
 if [ ! -e "$TARGET/bin/depot_tools" ]; then
   progress 'Getting depot_tools'
   git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$TARGET/bin/depot_tools"
