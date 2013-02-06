@@ -69,6 +69,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command tree || cross_install tree
   has_command fortune || cross_install fortune
   has_command mosh || cross_install mobile-shell
+  has_command ohcount || cross_install ohcount
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
   echo 'Install system requirements...'
   has_command git || cross_install git
@@ -82,6 +83,7 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
       sudo apt-get update
       cross_install mosh
     fi
+    has_command ohcount || cross_install ohcount
   elif [[ $OS == 'Fedora' ]]; then
     if ! has_command mosh; then
       cross_install mosh
