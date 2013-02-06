@@ -61,11 +61,31 @@ if [[ $PLATFORM == 'darwin' ]]; then
     echo -n 'Install Homebrew...'
     ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
     echo "[OK]"
+    brew update
   fi
 
-  if ! has_command mosh; then
-    echo 'Install mosh...'
-    brew install mobile-shell
+  echo 'Install other usefull tools..'
+  has_command git || cross_install git
+  has_command tree || cross_install tree
+  has_command fortune || cross_install fortune
+  has_command mosh || cross_install mobile-shell
+elif [[ $PLATFORM == 'linux-gnu' ]]; then
+  echo 'Install system requirements...'
+  has_command git || cross_install git
+  has_command tree || cross_install tree
+  has_command fortune || cross_install fortune-mod
+
+  if [[ $OS == 'Ubuntu' ]]; then
+    if ! has_command mosh; then
+      cross_install python-software-properties software-properties-common
+      sudo add-apt-repository ppa:keithw/mosh
+      sudo apt-get update
+      cross_install mosh
+    fi
+  elif [[ $OS == 'Fedora' ]]; then
+    if ! has_command mosh; then
+      cross_install mosh
+    fi
   fi
 fi
 
