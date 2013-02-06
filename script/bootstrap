@@ -42,6 +42,9 @@ elif [[ $LASTLINE_OF_BASHRC != "source $TARGET_LITERAL/.custom_bashrc" ]]; then
 fi
 echo "[OK]"
 
+cp /etc/hosts $BACKUP
+source $SOURCE/script/update_hosts $SOURCE/etc/hosts
+
 function reuse_or_create_dir {
   if [ ! -e "$TARGET/$1" ]; then
     mkdir "$TARGET/$1"
