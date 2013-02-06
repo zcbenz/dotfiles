@@ -36,7 +36,7 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
   rm $NODE_DIST_NAME/ChangeLog
   rm $NODE_DIST_NAME/LICENSE
   rm $NODE_DIST_NAME/README.md
-  sudo cp -r $NODE_DIST_NAME/* /usr/local/
+  sudo cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
 
   # Clean
   rm -rf $NODE_DIST_NAME

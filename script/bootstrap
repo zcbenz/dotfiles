@@ -95,7 +95,7 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
   success "Tools installed"
 fi
 
-progress 'Updating node'
+progress 'Downloading node'
 if source "$SOURCE/script/update_node"; then
   if [[ $NODE_VERSION == $SYSTEM_NODE_VERSION ]]; then
     success 'Current node is already the latest version'
@@ -120,9 +120,12 @@ fi
 
 if [ ! -e "$TARGET/bin/hub" ]; then
   progress 'Getting hub'
-  curl http://defunkt.io/hub/standalone -sLo $TARGET/bin/hub &&
-      chmod +x $TARGET/bin/hub
-  success 'hub downloaded'
+  if curl http://defunkt.io/hub/standalone -sLo $TARGET/bin/hub &&
+     chmod +x $TARGET/bin/hub; then
+    success 'hub downloaded'
+  else
+    fail 'Cannot download hub'
+  fi
 fi
 
 source "$TARGET/.custom_bashrc" nofortune
