@@ -11,7 +11,7 @@ function cross_install {
   if has_command yum; then
     INSTALL='sudo yum install'
   elif has_command apt-get; then
-    INSTALL='sudo apt-get install'
+    INSTALL='sudo DEBIAN_FRONTEND=noninteractive apt-get -q -y install'
   elif has_command brew; then
     INSTALL='brew install'
   else
