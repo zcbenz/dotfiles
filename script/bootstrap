@@ -98,7 +98,7 @@ fi
 progress 'Updating node'
 if source "$SOURCE/script/update_node"; then
   if [[ $NODE_VERSION == $SYSTEM_NODE_VERSION ]]; then
-    success 'Current node is already latest'
+    success 'Current node is already the latest version'
   else
     success "Node is updated to $NODE_VERSION"
   fi

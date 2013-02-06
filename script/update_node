@@ -19,7 +19,7 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
     *) echo "Unsupported platform $OSTYPE" && exit 1 ;;
   esac
 
-  if $(uname -a | grep 'x86_64'); then
+  if uname -a | grep 'x86_64' > /dev/null ; then
     NODE_ARCH=x64
   else
     NODE_ARCH=x86
