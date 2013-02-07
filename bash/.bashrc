@@ -13,6 +13,9 @@ function mkcd ()
 # Extra tools
 source ~/.tools_aliases
 
+# Tools settings
+export GYP_GENERATORS=ninja
+
 # Bash settings
 export HISTSIZE=3000
 export HISTCONTROL=ignoreboth
