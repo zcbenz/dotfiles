@@ -29,6 +29,9 @@ link_and_backup .custom_bashrc bash/.bashrc
 link_and_backup .tools_aliases bash/.tools_aliases
 # .gitconfig contains machine-dependent information so don't link
 [ -e "$TARGET/.gitconfig" ] || cp "$SOURCE/git/.gitconfig" "$TARGET/.gitconfig"
+# .vnc/xstartup vaires on different system, so just copy on need
+[ -e "$TARGET/.vnc" ] || mkdir "$TARGET/.vnc"
+[ -e "$TARGET/.vnc/xstartup" ] || cp "$SOURCE/vnc/xstartup" "$TARGET/.vnc/xstartup"
 success "Link configuration files"
 
 LASTLINE_OF_BASHRC=$(tail -n 1 "$TARGET/.bashrc" 2>/dev/null)
