@@ -15,7 +15,7 @@ source ~/.tools_aliases
 
 # Bash settings
 export HISTSIZE=3000
-export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups,ignoreboth
+export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT='%F %T '
 shopt -s histappend
 shopt -s checkwinsize

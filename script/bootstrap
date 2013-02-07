@@ -75,7 +75,6 @@ if [[ $PLATFORM == 'darwin' ]]; then
   fi
 
   progress 'Installing other useful tools'
-  has_command git || cross_install git
   has_command tree || cross_install tree
   has_command fortune || cross_install fortune
   has_command mosh || cross_install mobile-shell
@@ -83,7 +82,6 @@ if [[ $PLATFORM == 'darwin' ]]; then
   success "Tools installed"
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
   progress 'Installing system tools'
-  has_command git || cross_install git
   has_command tree || cross_install tree
   has_command fortune || cross_install fortune-mod
 
