@@ -2,7 +2,8 @@
 
 # Convient settings
 alias la='ls -a'
-alias ll='ls -l'
+alias ll='ls -lh'
+alias df='df -h'
 alias sudo='sudo env PATH=$PATH' # sudo with current PATH
 alias cn='env LANG=zh_CN.UTF-8 '
 function mkcd ()
@@ -12,9 +13,6 @@ function mkcd ()
 
 # Extra tools
 source ~/.tools_aliases
-
-# Tools settings
-export GYP_GENERATORS=ninja
 
 # Bash settings
 export HISTSIZE=3000
