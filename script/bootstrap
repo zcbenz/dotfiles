@@ -18,6 +18,20 @@ TARGET_LITERAL=$TARGET
 BACKUP=`mktemp -d /tmp/dotfiles_backup_XXXXXX`
 info "Old files will be put in $BACKUP"
 
+function reuse_or_create_dir {
+  mkdir "$BACKUP/$1"
+  if [ ! -e "$TARGET/$1" ]; then
+    mkdir "$TARGET/$1"
+  elif [ ! -d "$TARGET/$1" ]; then
+    mv "$TARGET/$1" "$BACKUP/$1"
+    mkdir "$TARGET/$1"
+  fi
+}
+
+reuse_or_create_dir bin
+reuse_or_create_dir codes
+success 'Create bin and codes'
+
 function link_and_backup {
   [ -e "$TARGET/$1" ] && mv "$TARGET/$1" "$BACKUP/$1"
   ln -s "$SOURCE/$2" "$TARGET/$1"
@@ -27,6 +41,7 @@ link_and_backup .vim vim/.vim
 link_and_backup .vimrc vim/.vimrc
 link_and_backup .custom_bashrc bash/.bashrc
 link_and_backup .tools_aliases bash/.tools_aliases
+link_and_backup bin/git-svn-diff bin/git-svn-diff
 # .gitconfig contains machine-dependent information so don't link
 [ -e "$TARGET/.gitconfig" ] || cp "$SOURCE/git/.gitconfig" "$TARGET/.gitconfig"
 # .vnc/xstartup vaires on different system, so just copy on need
@@ -55,19 +70,6 @@ fi
 cp /etc/hosts $BACKUP
 source $SOURCE/script/update_hosts $SOURCE/etc/hosts
 success 'Update hosts'
-
-function reuse_or_create_dir {
-  if [ ! -e "$TARGET/$1" ]; then
-    mkdir "$TARGET/$1"
-  elif [ ! -d "$TARGET/$1" ]; then
-    mv "$TARGET/$1" "$BACKUP/$1"
-    mkdir "$TARGET/$1"
-  fi
-}
-
-reuse_or_create_dir bin
-reuse_or_create_dir codes
-success 'Create bin and codes'
 
 if [[ $PLATFORM == 'darwin' ]]; then
   if ! has_command brew; then
