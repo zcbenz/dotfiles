@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sed -e "/--- \/dev\/null/{ N; s|^--- /dev/null\n+++ \(.*\)|---\1  (revision 0)\n+++\1 (revision 0)|;}" \
-    -e "s/^--- .*/& (revision 0)/" \
-    -e "s/^+++ .*/& (working copy)/" \
+    -e "s/^--- .*/&	(revision 0)/" \
+    -e "s/^+++ .*/&	(working copy)/" \
     -e "s/^diff --git [^[:space:]]*/Index:/" \
     -e "s/^index.*/===================================================================/"
