@@ -59,3 +59,4 @@ let g:SuperTabLongestHighlight = 0
 let &termencoding=&encoding
 let g:acp_behaviorSnipmateLength = 1
 
+call pathogen#infect()
