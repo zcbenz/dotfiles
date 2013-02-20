@@ -84,11 +84,13 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command fortune || cross_install fortune
   has_command mosh || cross_install mobile-shell
   has_command ohcount || cross_install ohcount
+  has_command s3cmd || cross_install s3cmd
   success "Tools installed"
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
   progress 'Installing system tools'
   has_command tree || cross_install tree
   has_command fortune || cross_install fortune-mod
+  has_command s3cmd || cross_install s3cmd
 
   if [[ $OS == 'Ubuntu' ]]; then
     if ! has_command mosh; then
