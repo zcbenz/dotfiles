@@ -71,6 +71,17 @@ cp /etc/hosts $BACKUP
 source $SOURCE/script/update_hosts $SOURCE/etc/hosts
 success 'Update hosts'
 
+progress 'Downloading node'
+if source "$SOURCE/script/update_node"; then
+  if [[ $NODE_VERSION == $SYSTEM_NODE_VERSION ]]; then
+    success 'Current node is already the latest version'
+  else
+    success "Node is updated to $NODE_VERSION"
+  fi
+else
+  fail 'Cannot update node'
+fi
+
 if [[ $PLATFORM == 'darwin' ]]; then
   if ! has_command brew; then
     progress 'Installng Homebrew'
@@ -85,12 +96,14 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command mosh || cross_install mobile-shell
   has_command ohcount || cross_install ohcount
   has_command s3cmd || cross_install s3cmd
+  has_command nak || sudo npm install -g nak
   success "Tools installed"
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
   progress 'Installing system tools'
   has_command tree || cross_install tree
   has_command fortune || cross_install fortune-mod
   has_command s3cmd || cross_install s3cmd
+  has_command nak || sudo npm install -g nak
 
   if [[ $OS == 'Ubuntu' ]]; then
     if ! has_command mosh; then
@@ -107,17 +120,6 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
     fi
   fi
   success "Tools installed"
-fi
-
-progress 'Downloading node'
-if source "$SOURCE/script/update_node"; then
-  if [[ $NODE_VERSION == $SYSTEM_NODE_VERSION ]]; then
-    success 'Current node is already the latest version'
-  else
-    success "Node is updated to $NODE_VERSION"
-  fi
-else
-  fail 'Cannot update node'
 fi
 
 if [ ! -e "$TARGET/bin/depot_tools" ]; then
