@@ -42,6 +42,8 @@ link_and_backup .vimrc vim/.vimrc
 link_and_backup .custom_bashrc bash/.bashrc
 link_and_backup .tools_aliases bash/.tools_aliases
 link_and_backup bin/git-svn-diff bin/git-svn-diff
+# OS X doesn't have bash_profile on default
+[ -e "$TARGET/.bash_profile" ] || ln -s "$TARGET/.bashrc" "$TARGET/.bash_profile"
 # .gitconfig contains machine-dependent information so don't link
 [ -e "$TARGET/.gitconfig" ] || cp "$SOURCE/git/.gitconfig" "$TARGET/.gitconfig"
 # .vnc/xstartup vaires on different system, so just copy on need
