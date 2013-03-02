@@ -38,6 +38,11 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
   rm $NODE_DIST_NAME/README.md
   sudo cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
 
+  # Fix the npmlog not found bug under OS X
+  if [[ $NODE_PLATFORM == 'darwin' ]]; then
+    curl -fsSkL https://npmjs.org/install.sh | sudo sh > /dev/null || exit 1
+  fi
+
   # Clean
   rm -rf $NODE_DIST_NAME
   cd - > /dev/null
