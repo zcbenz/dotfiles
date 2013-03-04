@@ -136,6 +136,15 @@ if [ ! -e "$TARGET/codes/xunlei-lixian" ]; then
   success 'xunlei-lixian downloaded'
 fi
 
+if [ ! -e "$TARGET/codes/gyp" ]; then
+  progress 'Getting gyp'
+  git clone https://github.com/svn2github/gyp.git "$TARGET/codes/gyp"
+  cd "$TARGET/codes/gyp"
+  sudo python setup.py install
+  cd - > /dev/null
+  success 'gyp downloaded'
+fi
+
 if [ ! -e "$TARGET/bin/hub" ]; then
   progress 'Getting hub'
   if curl http://defunkt.io/hub/standalone -sLo $TARGET/bin/hub &&
