@@ -50,3 +50,10 @@ case $PLATFORM in
   *) OS=OTHER ;;
 esac
 
+# Tools aliases
+if [[ $PLATFORM == 'darwin' ]]; then
+  SED=gsed
+else
+  SED=sed
+fi
+

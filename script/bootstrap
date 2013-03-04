@@ -70,7 +70,7 @@ if ! sudo grep -q "$SUDOER_LINE" /etc/sudoers; then
 fi
 
 cp /etc/hosts $BACKUP
-source $SOURCE/script/update_hosts $SOURCE/etc/hosts
+bash $SOURCE/script/update_hosts $SOURCE/etc/hosts
 success 'Update hosts'
 
 progress 'Downloading node'
@@ -98,6 +98,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command mosh || cross_install mobile-shell
   has_command ohcount || cross_install ohcount
   has_command s3cmd || cross_install s3cmd
+  has_command gsed || cross_install gsed
   has_command nak || sudo npm install -g nak
   success "Tools installed"
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
