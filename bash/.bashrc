@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Convient settings
+alias l='ls -p'
 alias la='ls -a'
 alias ll='ls -lh'
 alias df='df -h'
@@ -15,6 +16,7 @@ function mkcd ()
 source ~/.tools_aliases
 
 # Bash settings
+export CLICOLOR=1
 export HISTSIZE=3000
 export HISTCONTROL=ignoreboth
 export HISTTIMEFORMAT='%F %T '

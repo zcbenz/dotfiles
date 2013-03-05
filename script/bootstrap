@@ -98,7 +98,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command mosh || cross_install mobile-shell
   has_command ohcount || cross_install ohcount
   has_command s3cmd || cross_install s3cmd
-  has_command gsed || cross_install gsed
+  has_command gsed || cross_install gnu-sed
   has_command nak || sudo npm install -g nak
   success "Tools installed"
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
