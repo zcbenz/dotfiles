@@ -42,6 +42,7 @@ link_and_backup .vimrc vim/.vimrc
 link_and_backup .custom_bashrc bash/.bashrc
 link_and_backup .tools_aliases bash/.tools_aliases
 link_and_backup bin/git-svn-diff bin/git-svn-diff
+link_and_backup bin/seuroute bin/seuroute
 # OS X doesn't have bash_profile on default
 [ -e "$TARGET/.bash_profile" ] || ln -s "$TARGET/.bashrc" "$TARGET/.bash_profile"
 # .gitconfig contains machine-dependent information so don't link
@@ -69,10 +70,6 @@ if ! sudo grep -q "$SUDOER_LINE" /etc/sudoers; then
   success 'Inject /etc/sudoers'
 fi
 
-cp /etc/hosts $BACKUP
-bash $SOURCE/script/update_hosts $SOURCE/etc/hosts
-success 'Update hosts'
-
 progress 'Downloading node'
 if source "$SOURCE/script/update_node"; then
   if [[ $NODE_VERSION == $SYSTEM_NODE_VERSION ]]; then
@@ -94,6 +91,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
 
   progress 'Installing other useful tools'
   has_command tree || cross_install tree
+  has_command wget || cross_install wget
   has_command fortune || cross_install fortune
   has_command mosh || cross_install mobile-shell
   has_command ohcount || cross_install ohcount
@@ -124,6 +122,10 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
   fi
   success "Tools installed"
 fi
+
+cp /etc/hosts $BACKUP
+bash $SOURCE/script/update_hosts $SOURCE/etc/hosts
+success 'Update hosts'
 
 if [ ! -e "$TARGET/bin/depot_tools" ]; then
   progress 'Getting depot_tools'

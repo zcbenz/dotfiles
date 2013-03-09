@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ -z $1 ]; then
+  GATEWAY=`route -n get default | grep gateway | awk '{print $2}'`
+else
+  GATEWAY=$1
+fi
+
+route -n add -net 172.16.0.0 -netmask 255.240.0.0 $GATEWAY   
+route -n add -net 202.119.0.0 -netmask 255.255.224.0 $GATEWAY   
+route -n add -net 202.119.144.0 -netmask 255.255.240.0 $GATEWAY   
+route -n add -net 211.65.32.0 -netmask 255.255.224.0 $GATEWAY   
+route -n add -net 202.119.24.55 -netmask 255.255.255.255 $GATEWAY    
+#bras.seu.edu.cn   
+route -n add -net 58.192.112.0 -netmask 255.255.240.0 $GATEWAY       
+#www.seu.edu.cn   
+route -n add -net 121.229.0.0 -netmask 255.255.0.0 $GATEWAY           
+route -n add -net 10.0.0.0 -netmask 255.0.0.0 $GATEWAY   
+# thanks for twinhorse's advice   
+# wireless in library   
+route -n add -net 121.248.48.0 -netmask 255.255.240.0 $GATEWAY   
+# unknown net address   
+route -n add -net 211.65.232.0 -netmask 255.255.252.0 $GATEWAY  
