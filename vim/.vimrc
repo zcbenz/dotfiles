@@ -37,22 +37,19 @@ nmap <leader>v :e! ~/.vimrc<cr>
 nmap <leader>z :source ~/.vimrc<cr>
 
 " tabpage binding
-noremap <unique> <script> 1 1gt<CR>
-noremap <unique> <script> 2 2gt<CR>
-noremap <unique> <script> 3 3gt<CR>
-noremap <unique> <script> 4 4gt<CR>
-noremap <unique> <script> 5 5gt<CR>
-noremap <unique> <script> 6 6gt<CR>
-noremap <unique> <script> 7 7gt<CR>
-noremap <unique> <script> 8 8gt<CR>
-noremap <unique> <script> 9 9gt<CR>
+noremap <unique> <script> <leader>1 1gt<CR>
+noremap <unique> <script> <leader>2 2gt<CR>
+noremap <unique> <script> <leader>3 3gt<CR>
+noremap <unique> <script> <leader>4 4gt<CR>
+noremap <unique> <script> <leader>5 5gt<CR>
+noremap <unique> <script> <leader>6 6gt<CR>
+noremap <unique> <script> <leader>7 7gt<CR>
+noremap <unique> <script> <leader>8 8gt<CR>
+noremap <unique> <script> <leader>9 9gt<CR>
 nnoremap <silent> <leader>tt :tabnew<cr>
 nnoremap <silent> <leader>tc :tabclose<cr>
-nnoremap <silent> <A-Left> :tabprevious<CR>
-nnoremap <silent> <A-Right> :tabnext<CR>
-nnoremap <silent> <C-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
-nnoremap <silent> <C-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+nnoremap <silent> <leader>tp :tabprevious<CR>
+nnoremap <silent> <leader>tn :tabnext<CR>
 
 let g:fuf_modesDisable = [] 
 let g:SuperTabLongestHighlight = 0
