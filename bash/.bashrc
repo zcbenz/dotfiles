@@ -35,6 +35,8 @@ alias vi="vim -p"
 OS=${OSTYPE//[0-9.]/} # remove trailing version like in darwin9.0
 if [[ "$OS" != 'darwin' ]]; then
   alias open="xdg-open"
+else
+  export PATH=~/bin/darwin:$PATH
 fi
 
 # Show me fortune at last
