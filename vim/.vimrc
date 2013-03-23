@@ -20,6 +20,11 @@ set fdm=marker
 set t_Co=256
 set fileencodings=utf-8,gbk,ucs-bom,cp936
 
+set visualbell           " don't beep
+set noerrorbells         " don't beep
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+
 filetype plugin on
 filetype indent on
 
