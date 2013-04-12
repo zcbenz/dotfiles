@@ -46,6 +46,7 @@ link_and_backup .custom_bashrc bash/.bashrc
 link_and_backup .tools_aliases bash/.tools_aliases
 link_and_backup bin/git-svn-diff bin/git-svn-diff
 link_and_backup bin/seuroute bin/seuroute
+link_and_backup bin/rename bin/rename
 if [[ $PLATFORM == 'darwin' ]]; then
   link_and_backup bin/darwin/adb bin/darwin/adb
   link_and_backup bin/darwin/fastboot bin/darwin/fastboot
