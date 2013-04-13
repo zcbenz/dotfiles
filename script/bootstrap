@@ -156,6 +156,15 @@ if [ ! -e "$TARGET/codes/gyp" ]; then
   success 'gyp downloaded'
 fi
 
+if [ ! -e "$TARGET/codes/boto" ]; then
+  progress 'Getting boto'
+  git clone https://github.com/boto/boto.git "$TARGET/codes/boto"
+  cd "$TARGET/codes/boto"
+  sudo python setup.py install
+  cd - > /dev/null
+  success 'boto downloaded'
+fi
+
 if [ ! -e "$TARGET/bin/hub" ]; then
   progress 'Getting hub'
   if curl http://defunkt.io/hub/standalone -sLo $TARGET/bin/hub &&
