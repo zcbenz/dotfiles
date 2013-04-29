@@ -1,4 +1,4 @@
 #!/bin/bash
 
-export PATH=~/bin:~/bin/depot_tools:/opt/github/bin:$PATH
+export PATH=/usr/local/git/bin:~/bin:~/bin/depot_tools:/opt/github/bin:$PATH
 alias xunlei='python ~/codes/xunlei-lixian/lixian_cli.py'
