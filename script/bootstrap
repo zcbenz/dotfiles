@@ -106,6 +106,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command s3cmd || cross_install s3cmd
   has_command gsed || cross_install gnu-sed
   has_command nak || sudo npm install -g nak
+  has_command ag || cross_install the_silver_searcher
   success "Tools installed"
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
   progress 'Installing system tools'
