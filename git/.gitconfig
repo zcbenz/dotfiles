@@ -1,3 +1,7 @@
 [user]
 	name = Cheng Zhao
 	email = zcbenz@gmail.com
+[push]
+	default = simple
+[color]
+	diff = auto
