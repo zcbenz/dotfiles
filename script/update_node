@@ -12,10 +12,14 @@ NODE_VERSION=$(echo "$DOWNLOAD_PAGE" \
 SYSTEM_NODE_VERSION='v0.0.0'
 command -v node >/dev/null 2>&1 && SYSTEM_NODE_VERSION=`node -v`
 
+# Trim spaces
+SYSTEM_NODE_VERSION=`echo $SYSTEM_NODE_VERSION | sed 's/^ *\(.*\) *$/\1/'`
+
 if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
   case $OSTYPE in
     darwin*) NODE_PLATFORM=darwin ;;
     linux*) NODE_PLATFORM=linux ;;
+    cygwin*) NODE_PLATFORM=cygwin ;;
     *) echo "Unsupported platform $OSTYPE" && exit 1 ;;
   esac
 
@@ -26,17 +30,30 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
   fi
 
   # Download node and untar
-  NODE_DIST_NAME="node-$NODE_VERSION-$NODE_PLATFORM-$NODE_ARCH"
-  NODE_TARBALL_URL="http://nodejs.org/dist/$NODE_VERSION/$NODE_DIST_NAME.tar.gz"
-  TEMP_DIR=`mktemp -d /tmp/dotfiles_node_XXXXXX`
-  cd "$TEMP_DIR"
-  curl -fsSkL $NODE_TARBALL_URL | tar -zx || exit 1
+  if [[ $NODE_PLATFORM == 'cygwin' ]]; then
+    NODE_DIST_NAME="node"
+    NODE_TARBALL_URL="http://nodejs.org/dist/$NODE_VERSION/x64/$NODE_DIST_NAME.exe"
+  else
+    NODE_DIST_NAME="node-$NODE_VERSION-$NODE_PLATFORM-$NODE_ARCH"
+    NODE_TARBALL_URL="http://nodejs.org/dist/$NODE_VERSION/$NODE_DIST_NAME.tar.gz"
+  fi
 
-  # Install
-  rm $NODE_DIST_NAME/ChangeLog
-  rm $NODE_DIST_NAME/LICENSE
-  rm $NODE_DIST_NAME/README.md
-  sudo cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
+  TEMP_DIR=`mktemp -d /tmp/dotfiles_node_XXXXXX`
+  trap "rm -rf $TEMP_DIR" EXIT
+  cd "$TEMP_DIR"
+
+  if [[ $NODE_PLATFORM == 'cygwin' ]]; then
+    curl -fsSkL $NODE_TARBALL_URL > node.exe || exit 1
+    cp node.exe /usr/local/bin/
+  else
+    curl -fsSkL $NODE_TARBALL_URL | tar -zx || exit 1
+
+    # Install
+    rm $NODE_DIST_NAME/ChangeLog
+    rm $NODE_DIST_NAME/LICENSE
+    rm $NODE_DIST_NAME/README.md
+    sudo cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
+  fi
 
   # Fix the npmlog not found bug under OS X
   if [[ $NODE_PLATFORM == 'darwin' ]]; then
@@ -44,8 +61,8 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
   fi
 
   # Clean
-  rm -rf $NODE_DIST_NAME
-  cd - > /dev/null
-  rm -rf $TEMP_DIR
+  if [[ $NODE_PLATFORM != 'cygwin' ]]; then
+    rm -rf $NODE_DIST_NAME
+    cd - > /dev/null
+  fi
 fi
-
