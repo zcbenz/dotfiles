@@ -52,6 +52,8 @@ link_and_backup bin/rename bin/rename
 if [[ $PLATFORM == 'darwin' ]]; then
   link_and_backup bin/darwin/adb bin/darwin/adb
   link_and_backup bin/darwin/fastboot bin/darwin/fastboot
+elif [[ $PLATFORM == 'cygwin' ]]; then
+  link_and_backup bin/sudo bin/sudo
 fi
 # OS X doesn't have bash_profile on default
 [ -e "$TARGET/.bash_profile" ] || ln -s "$TARGET/.bashrc" "$TARGET/.bash_profile"
@@ -70,12 +72,14 @@ elif [[ $LASTLINE_OF_BASHRC != $LASTLINE_TO_BE ]]; then
   success "Inject $TARGET_LITERAL/.bashrc"
 fi
 
-SUDOER_LINE="$USER  ALL=(ALL)       NOPASSWD: ALL"
-if ! sudo grep -q "$SUDOER_LINE" /etc/sudoers; then
-  sudo cp /etc/sudoers $BACKUP
-  sudo bash -c 'echo >> /etc/sudoers'
-  sudo bash -c "echo \"$SUDOER_LINE\" >> /etc/sudoers"
-  success 'Inject /etc/sudoers'
+if [[ $PLATFORM != 'cygwin' ]]; then
+  SUDOER_LINE="$USER  ALL=(ALL)       NOPASSWD: ALL"
+  if ! sudo grep -q "$SUDOER_LINE" /etc/sudoers; then
+    sudo cp /etc/sudoers $BACKUP
+    sudo bash -c 'echo >> /etc/sudoers'
+    sudo bash -c "echo \"$SUDOER_LINE\" >> /etc/sudoers"
+    success 'Inject /etc/sudoers'
+  fi
 fi
 
 progress 'Downloading node'

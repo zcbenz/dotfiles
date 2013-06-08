@@ -23,8 +23,12 @@ export HISTTIMEFORMAT='%F %T '
 shopt -s histappend
 shopt -s checkwinsize
 
+OS=${OSTYPE//[0-9.]/} # remove trailing version like in darwin9.0
+
 # kitten#1575:~$
-PS1='\h#\!:\w\[\e[0;33m\]\[`tput bold`\]\$\[`tput rmso`\]\[\e[m\] '
+if [[ "$OS" != 'cygwin' ]]; then
+  PS1='\h#\!:\w\[\e[0;33m\]\[`tput bold`\]\$\[`tput rmso`\]\[\e[m\] '
+fi
 
 # I use vim!
 set -o vi
@@ -32,7 +36,6 @@ export EDITOR=vim
 alias vi="vim -p"
 
 # OS specific commands
-OS=${OSTYPE//[0-9.]/} # remove trailing version like in darwin9.0
 if [[ "$OS" != 'darwin' ]]; then
   alias open="xdg-open"
 else

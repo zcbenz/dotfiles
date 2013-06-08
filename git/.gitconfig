@@ -2,7 +2,7 @@
 	name = Cheng Zhao
 	email = zcbenz@gmail.com
 [push]
-	default = simple
+	default = matching
 [color]
 	diff = auto
 [alias]
