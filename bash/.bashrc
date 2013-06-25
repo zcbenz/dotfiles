@@ -42,7 +42,8 @@ elif [[ $OS == 'linux' ]]; then
   alias open="xdg-open"
 elif [[ $OS == 'cygwin' ]]; then
   alias open="start"
-  alias ls="ls --color"
+  alias ls="ls --color --group-directories-first"
+  export LS_COLORS="ex=31"
 fi
 
 # Show me fortune at last
