@@ -36,10 +36,13 @@ export EDITOR=vim
 alias vi="vim -p"
 
 # OS specific commands
-if [[ "$OS" != 'darwin' ]]; then
-  alias open="xdg-open"
-else
+if [[ $OS == 'darwin' ]]; then
   export PATH=~/bin/darwin:$PATH
+elif [[ $OS == 'linux' ]]; then
+  alias open="xdg-open"
+elif [[ $OS == 'cygwin' ]]; then
+  alias open="start"
+  alias ls="ls --color"
 fi
 
 # Show me fortune at last
