@@ -42,9 +42,8 @@ elif [[ $OS == 'linux' ]]; then
   alias open="xdg-open"
 elif [[ $OS == 'cygwin' ]]; then
   alias open="cygstart"
-  alias ls="ls --color --group-directories-first"
+  alias ls="ls --color"
   alias ahk="/cygdrive/c/Program\ Files/AutoHotkey/AutoHotkey.exe"
-  export LS_COLORS="ex=31"
 fi
 
 # Show me fortune at last

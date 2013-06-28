@@ -54,6 +54,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
   link_and_backup bin/darwin/fastboot bin/darwin/fastboot
 elif [[ $PLATFORM == 'cygwin' ]]; then
   link_and_backup bin/sudo bin/sudo
+  link_and_backup .minttyrc misc/.minttyrc
 fi
 # OS X doesn't have bash_profile on default
 [ -e "$TARGET/.bash_profile" ] || ln -s "$TARGET/.bashrc" "$TARGET/.bash_profile"
