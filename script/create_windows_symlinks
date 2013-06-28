@@ -14,3 +14,4 @@ function link_if_not_exist {
 WIN_HOME="/cygdrive/${USERPROFILE/:/}"
 
 link_if_not_exist Desktop "$WIN_HOME/Desktop"
+link_if_not_exist Downloads "$WIN_HOME/Downloads"
