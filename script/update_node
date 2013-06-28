@@ -9,8 +9,13 @@ NODE_VERSION=$(echo "$DOWNLOAD_PAGE" \
                | awk -F"[<>]" '{ print $5 }')
 
 # Test system's node version if we have node installed
-SYSTEM_NODE_VERSION='v0.0.0'
-command -v node >/dev/null 2>&1 && SYSTEM_NODE_VERSION=`node -v`
+if command -v node >/dev/null 2>&1; then
+  SYSTEM_NODE_VERSION=`node -v`
+  NODE_POSITION=`which node`
+else
+  SYSTEM_NODE_VERSION='v0.0.0'
+  NODE_POSITION='/usr/local/bin/node.exe'
+fi
 
 # Trim spaces
 SYSTEM_NODE_VERSION=`echo $SYSTEM_NODE_VERSION | sed 's/^ *\(.*\) *$/\1/'`
@@ -44,7 +49,7 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
 
   if [[ $NODE_PLATFORM == 'cygwin' ]]; then
     curl -fsSkL $NODE_TARBALL_URL > node.exe || exit 1
-    cp node.exe /usr/local/bin/
+    cp node.exe $NODE_POSITION
   else
     curl -fsSkL $NODE_TARBALL_URL | tar -zx || exit 1
 
