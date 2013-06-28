@@ -134,6 +134,9 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
     fi
   fi
   success "Tools installed"
+elif [[ $PLATFORM == 'cygwin' ]]; then
+  bash $SOURCE/script/create_windows_symlinks $TARGET
+  success 'Create convenient symbol links'
 fi
 
 cp /etc/hosts $BACKUP
@@ -184,4 +187,3 @@ source "$TARGET/.custom_bashrc" nofortune
 success 'Load new environment'
 
 exit 0
-

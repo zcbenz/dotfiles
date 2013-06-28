@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Root of dotfiles
+SOURCE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+
+TARGET=${1:-~}
+
+function link_if_not_exist {
+  if [ ! -L "$TARGET/$1" ] && [ ! -e "$TARGET/$1" ]; then
+    ln -s $2 "$TARGET/$1"
+  fi
+}
+
+WIN_HOME="/cygdrive/${USERPROFILE/:/}"
+
+link_if_not_exist Desktop "$WIN_HOME/Desktop"
