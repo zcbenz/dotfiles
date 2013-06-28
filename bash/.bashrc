@@ -44,6 +44,7 @@ elif [[ $OS == 'cygwin' ]]; then
   alias open="cygstart"
   alias ls="ls --color"
   alias ahk="/cygdrive/c/Program\ Files/AutoHotkey/AutoHotkey.exe"
+  export LC_ALL='en_US.UTF-8'
 fi
 
 # Show me fortune at last
