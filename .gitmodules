@@ -10,3 +10,6 @@
 [submodule "vim/.vim/bundle/github-flavored-markdown"]
 	path = vim/.vim/bundle/github-flavored-markdown
 	url = https://github.com/jtratner/vim-flavored-markdown
+[submodule "vim/.vim/bundle/fuzzy-finder"]
+	path = vim/.vim/bundle/fuzzy-finder
+	url = https://github.com/vim-scripts/FuzzyFinder.git
