@@ -3,6 +3,11 @@
 # Root of dotfiles
 SOURCE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 
+cd $SOURCE
+git submodule sync --quiet
+git submodule update --init --recursive
+cd - > /dev/null
+
 # Include utils
 source $SOURCE/script/bash_utils
 
