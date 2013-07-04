@@ -37,7 +37,7 @@ alias vi="vim -p"
 
 # OS specific commands
 if [[ $OS == 'darwin' ]]; then
-  export PATH=~/bin/darwin:$PATH
+  export PATH=~/bin/darwin:/usr/local/bin:$PATH
 elif [[ $OS == 'linux' ]]; then
   alias open="xdg-open"
 elif [[ $OS == 'cygwin' ]]; then
