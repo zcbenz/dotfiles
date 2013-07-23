@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo networksetup -setwebproxy "Wi-Fi" ec2 8259
+sudo networksetup -setsecurewebproxy "Wi-Fi" ec2 8259
