@@ -28,16 +28,24 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
     *) echo "Unsupported platform $OSTYPE" && exit 1 ;;
   esac
 
-  if uname -a | grep 'x86_64' > /dev/null ; then
-    NODE_ARCH=x64
+  if [[ $NODE_PLATFORM == 'cygwin' ]]; then
+    if echo $PROGRAMFILES | grep 'x86' > /dev/null ; then
+      NODE_ARCH=x64
+    else
+      NODE_ARCH=x86
+    fi
   else
-    NODE_ARCH=x86
+    if uname -a | grep 'x86_64' > /dev/null ; then
+      NODE_ARCH=x64
+    else
+      NODE_ARCH=x86
+    fi
   fi
 
   # Download node and untar
   if [[ $NODE_PLATFORM == 'cygwin' ]]; then
-    NODE_DIST_NAME="node"
-    NODE_TARBALL_URL="http://nodejs.org/dist/$NODE_VERSION/x64/$NODE_DIST_NAME.exe"
+    NODE_DIST_NAME="node-$NODE_VERSION-$NODE_ARCH"
+    NODE_TARBALL_URL="http://nodejs.org/dist/$NODE_VERSION/$NODE_ARCH/$NODE_DIST_NAME.msi"
   else
     NODE_DIST_NAME="node-$NODE_VERSION-$NODE_PLATFORM-$NODE_ARCH"
     NODE_TARBALL_URL="http://nodejs.org/dist/$NODE_VERSION/$NODE_DIST_NAME.tar.gz"
@@ -48,8 +56,9 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
   cd "$TEMP_DIR"
 
   if [[ $NODE_PLATFORM == 'cygwin' ]]; then
-    curl -fsSkL $NODE_TARBALL_URL > node.exe || exit 1
-    cp node.exe "$NODE_POSITION"
+    echo $NODE_TARBALL_URL
+    curl $NODE_TARBALL_URL > node.msi || exit 1
+    msiexec /package node.msi /passive
   else
     curl -fsSkL $NODE_TARBALL_URL | tar -zx || exit 1
 
