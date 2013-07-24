@@ -49,7 +49,7 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
 
   if [[ $NODE_PLATFORM == 'cygwin' ]]; then
     curl -fsSkL $NODE_TARBALL_URL > node.exe || exit 1
-    cp node.exe $NODE_POSITION
+    cp node.exe "$NODE_POSITION"
   else
     curl -fsSkL $NODE_TARBALL_URL | tar -zx || exit 1
 
