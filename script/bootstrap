@@ -55,11 +55,11 @@ link_and_backup bin/git-delete-submodule bin/git-delete-submodule
 link_and_backup bin/seuroute bin/seuroute
 link_and_backup bin/rename bin/rename
 link_and_backup bin/svn-upgrade bin/svn-upgrade
+link_and_backup bin/proxyon bin/proxyon
+link_and_backup bin/proxyoff bin/proxyoff
 if [[ $PLATFORM == 'darwin' ]]; then
   link_and_backup bin/darwin/adb bin/darwin/adb
   link_and_backup bin/darwin/fastboot bin/darwin/fastboot
-  link_and_backup bin/darwin/proxyon bin/darwin/proxyon
-  link_and_backup bin/darwin/proxyoff bin/darwin/proxyoff
 elif [[ $PLATFORM == 'cygwin' ]]; then
   link_and_backup bin/sudo bin/sudo
   link_and_backup bin/pbcopy bin/pbcopy

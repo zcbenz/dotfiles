@@ -56,7 +56,6 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
   cd "$TEMP_DIR"
 
   if [[ $NODE_PLATFORM == 'cygwin' ]]; then
-    echo $NODE_TARBALL_URL
     curl $NODE_TARBALL_URL > node.msi || exit 1
     msiexec /package node.msi /passive
   else
