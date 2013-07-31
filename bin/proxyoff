@@ -5,6 +5,7 @@ PLATFORM=${OSTYPE//[0-9.]/} # remove trailing version like in darwin9.0
 if [[ $PLATFORM == 'darwin' ]]; then
   sudo networksetup -setwebproxystate "Wi-Fi" off
   sudo networksetup -setsecurewebproxystate "Wi-Fi" off
+  sudo networksetup -setsocksfirewallproxystate "Wi-Fi" off
 elif [[ $PLATFORM == 'cygwin' ]]; then
   runas.exe /savecred /user:administrator "netsh winhttp reset proxy"
 fi
