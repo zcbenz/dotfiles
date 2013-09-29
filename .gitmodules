@@ -22,3 +22,6 @@
 [submodule "vim/.vim/bundle/splitjoin"]
 	path = vim/.vim/bundle/splitjoin
 	url = https://github.com/AndrewRadev/splitjoin.vim
+[submodule "vim/.vim/bundle/trailing-whitespace"]
+	path = vim/.vim/bundle/trailing-whitespace
+	url = https://github.com/bronson/vim-trailing-whitespace.git
