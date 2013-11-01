@@ -25,3 +25,6 @@
 [submodule "vim/.vim/bundle/trailing-whitespace"]
 	path = vim/.vim/bundle/trailing-whitespace
 	url = https://github.com/bronson/vim-trailing-whitespace.git
+[submodule "vim/.vim/bundle/vim-javascript-syntax"]
+	path = vim/.vim/bundle/vim-javascript-syntax
+	url = https://github.com/jelera/vim-javascript-syntax.git
