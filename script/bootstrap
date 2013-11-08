@@ -94,6 +94,13 @@ if [[ $PLATFORM != 'cygwin' ]]; then
   fi
 fi
 
+if [[ $PLATFORM == 'darwin' ]] && ! has_command brew; then
+  progress 'Installng Homebrew'
+  ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+  success "Homebrew installed"
+  brew update
+fi
+
 progress 'Downloading node'
 if source "$SOURCE/script/update_node"; then
   if [[ $NODE_VERSION == $SYSTEM_NODE_VERSION ]]; then
@@ -106,13 +113,6 @@ else
 fi
 
 if [[ $PLATFORM == 'darwin' ]]; then
-  if ! has_command brew; then
-    progress 'Installng Homebrew'
-    ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-    success "Homebrew installed"
-    brew update
-  fi
-
   progress 'Installing other useful tools'
   has_command tree || cross_install tree
   has_command wget || cross_install wget
