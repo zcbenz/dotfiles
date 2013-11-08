@@ -3,11 +3,6 @@
 # Root of dotfiles
 SOURCE="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
 
-cd $SOURCE
-git submodule sync --quiet
-git submodule update --init --recursive
-cd - > /dev/null
-
 # Include utils
 source $SOURCE/script/bash_utils
 
@@ -96,10 +91,16 @@ fi
 
 if [[ $PLATFORM == 'darwin' ]] && ! has_command brew; then
   progress 'Installng Homebrew'
-  ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+  echo '' | ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+  brew install git
   success "Homebrew installed"
   brew update
 fi
+
+cd $SOURCE
+git submodule sync --quiet
+git submodule update --init --recursive
+cd - > /dev/null
 
 progress 'Downloading node'
 if source "$SOURCE/script/update_node"; then
