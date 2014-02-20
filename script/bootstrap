@@ -199,6 +199,10 @@ if [ ! -e "$TARGET/bin/hub" ]; then
   fi
 fi
 
+if [[ $PLATFORM == 'linux-gnu' ]]; then
+  source "$SOURCE/script/solarize" light
+fi
+
 source "$TARGET/.custom_bashrc" nofortune
 success 'Load new environment'
 
