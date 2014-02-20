@@ -131,6 +131,7 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
   has_command tree || cross_install tree
   has_command fortune || cross_install fortune-mod
   has_command s3cmd || cross_install s3cmd
+  has_command vim || cross_install vim
   has_command nak || sudo npm install -g nak
   has_command prettyjson || sudo npm install -g prettyjson
 
