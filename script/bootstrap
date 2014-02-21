@@ -99,7 +99,7 @@ fi
 
 cd $SOURCE
 git submodule sync --quiet
-git submodule update --init --recursive
+git submodule update --init --quiet --recursive
 cd - > /dev/null
 
 progress 'Downloading node'
