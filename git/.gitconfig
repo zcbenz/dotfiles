@@ -11,3 +11,5 @@
 	protocol = https
 [help]
 	autocorrect = 1
+[http]
+	sslVerify = false
