@@ -31,3 +31,6 @@
 [submodule "vim/.vim/bundle/vim-jade"]
 	path = vim/.vim/bundle/vim-jade
 	url = https://github.com/digitaltoad/vim-jade.git
+[submodule "vim/.vim/bundle/vim-rust"]
+	path = vim/.vim/bundle/vim-rust
+	url = https://github.com/wting/rust.vim.git
