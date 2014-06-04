@@ -25,9 +25,14 @@ shopt -s checkwinsize
 
 OS=${OSTYPE//[0-9.]/} # remove trailing version like in darwin9.0
 
+# Set variable identifying the chroot you work in.
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
 # kitten#1575:~$
 if [[ "$OS" != 'cygwin' ]]; then
-  PS1='\h#\!:\w\[\e[0;33m\]\[`tput bold`\]\$\[`tput rmso`\]\[\e[m\] '
+  PS1='${debian_chroot:+($debian_chroot)}\h#\!:\w\[\e[0;33m\]\[`tput bold`\]\$\[`tput rmso`\]\[\e[m\] '
 fi
 
 # I use vim!
