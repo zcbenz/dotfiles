@@ -43,3 +43,9 @@
 [submodule "vim/.vim/bundle/vim-addon-mw-utils"]
 	path = vim/.vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
+[submodule "vim/.vim/bundle/align"]
+	path = vim/.vim/bundle/align
+	url = https://github.com/vim-scripts/Align.git
+[submodule "vim/.vim/bundle/L9"]
+	path = vim/.vim/bundle/L9
+	url = https://github.com/vim-scripts/L9.git

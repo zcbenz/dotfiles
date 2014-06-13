@@ -56,7 +56,8 @@ nnoremap <silent> <leader>tc :tabclose<cr>
 nnoremap <silent> <leader>tp :tabprevious<CR>
 nnoremap <silent> <leader>tn :tabnext<CR>
 
-let g:fuf_modesDisable = [] 
+let g:loaded_AlignMapsPlugin = 'no'
+let g:fuf_modesDisable = []
 let g:SuperTabLongestHighlight = 0
 let &termencoding=&encoding
 
