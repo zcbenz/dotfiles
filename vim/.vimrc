@@ -59,7 +59,6 @@ nnoremap <silent> <leader>tn :tabnext<CR>
 let g:fuf_modesDisable = [] 
 let g:SuperTabLongestHighlight = 0
 let &termencoding=&encoding
-let g:acp_behaviorSnipmateLength = 1
 
 " use flavored-markdown by default
 augroup markdown
