@@ -29,17 +29,17 @@ filetype plugin on
 filetype indent on
 
 " key maps
-nmap <leader>ww :w!<cr>
-nmap <leader>wa :wa!<cr>
-nmap <leader>qq :q<cr>
-nmap <leader>qa :qa<cr>
-nmap <leader>bw :bw<cr>
-nmap <leader>bc :g/ *$/s///g<cr>
-nmap <leader>g :FufMruFile<cr>
-nmap <leader>f :FufFile<cr>
+nnoremap <leader>ww :w!<cr>
+nnoremap <leader>wa :wa!<cr>
+nnoremap <leader>qq :q<cr>
+nnoremap <leader>qa :qa<cr>
+nnoremap <leader>bw :bw<cr>
+nnoremap <leader>bc :g/ *$/s///g<cr>
+nnoremap <leader>g :FufMruFile<cr>
+nnoremap <leader>f :FufFile<cr>
 " Fast editing of the .vimrc
-nmap <leader>v :e! ~/.vimrc<cr>
-nmap <leader>z :source ~/.vimrc<cr>
+nnoremap <leader>v :e! ~/.vimrc<cr>
+nnoremap <leader>z :source ~/.vimrc<cr>
 
 " tabpage binding
 noremap <unique> <script> <leader>1 1gt<CR>
