@@ -10,8 +10,7 @@ snippet inc
 	#include <${1:stdio}.h>${2}
 # #include "..."
 snippet Inc
-	#include "${1:`strpart(strpart(expand('%:p'), 0, strridx(expand('%:p'), '.')), strlen(system('git rev-parse --show-toplevel'))).'.h'`}"
-	${2}
+	#include "${1:`strpart(strpart(expand('%:p'), 0, strridx(expand('%:p'), '.')), strlen(system('git rev-parse --show-toplevel'))).'.h'`}"${2}
 # #ifndef ... #define ... #endif
 snippet Def
 	#ifndef $1
