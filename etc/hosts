@@ -1,1 +1,7 @@
 54.249.141.255 ec2
+
+# 屏蔽广告联盟
+127.0.0.1 cpro.baidu.com
+127.0.0.1 cpro.baidustatic.com
+127.0.0.1 wn.pos.baidu.com
+127.0.0.1 p.tanx.com
