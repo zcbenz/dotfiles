@@ -43,6 +43,10 @@ nnoremap <leader>7 7gt<cr>
 nnoremap <leader>8 8gt<cr>
 nnoremap <leader>9 9gt<cr>
 nnoremap <leader>t :tabnew<cr>
+nnoremap <leader>c :tabclose<cr>
+nnoremap <leader>w :bw<cr>
+nnoremap <leader>a :wa<cr>
+nnoremap <leader>q :qa<cr>
 
 let g:loaded_AlignMapsPlugin = 'no'
 let g:fuf_modesDisable = []
