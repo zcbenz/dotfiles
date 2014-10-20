@@ -29,32 +29,20 @@ filetype plugin on
 filetype indent on
 
 " key maps
-nnoremap <leader>ww :w!<cr>
-nnoremap <leader>wa :wa!<cr>
-nnoremap <leader>qq :q<cr>
-nnoremap <leader>qa :qa<cr>
-nnoremap <leader>bw :bw<cr>
-nnoremap <leader>bc :g/ *$/s///g<cr>
 nnoremap <leader>g :FufMruFile<cr>
 nnoremap <leader>f :FufFile<cr>
-" Fast editing of the .vimrc
-nnoremap <leader>v :e! ~/.vimrc<cr>
-nnoremap <leader>z :source ~/.vimrc<cr>
 
 " tabpage binding
-noremap <unique> <script> <leader>1 1gt<CR>
-noremap <unique> <script> <leader>2 2gt<CR>
-noremap <unique> <script> <leader>3 3gt<CR>
-noremap <unique> <script> <leader>4 4gt<CR>
-noremap <unique> <script> <leader>5 5gt<CR>
-noremap <unique> <script> <leader>6 6gt<CR>
-noremap <unique> <script> <leader>7 7gt<CR>
-noremap <unique> <script> <leader>8 8gt<CR>
-noremap <unique> <script> <leader>9 9gt<CR>
-nnoremap <silent> <leader>tt :tabnew<cr>
-nnoremap <silent> <leader>tc :tabclose<cr>
-nnoremap <silent> <leader>tp :tabprevious<CR>
-nnoremap <silent> <leader>tn :tabnext<CR>
+nnoremap <leader>1 1gt<cr>
+nnoremap <leader>2 2gt<cr>
+nnoremap <leader>3 3gt<cr>
+nnoremap <leader>4 4gt<cr>
+nnoremap <leader>5 5gt<cr>
+nnoremap <leader>6 6gt<cr>
+nnoremap <leader>7 7gt<cr>
+nnoremap <leader>8 8gt<cr>
+nnoremap <leader>9 9gt<cr>
+nnoremap <leader>t :tabnew<cr>
 
 let g:loaded_AlignMapsPlugin = 'no'
 let g:fuf_modesDisable = []
