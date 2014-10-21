@@ -65,7 +65,7 @@ complete -o default -o nospace -F _jump jump
 # OS specific commands
 if [[ $OS == 'darwin' ]]; then
   export PATH=~/bin/darwin:/usr/local/bin:$PATH
-elif [[ $OS == 'linux' ]]; then
+elif [[ $OS == 'linux-gnu' ]]; then
   alias open="xdg-open"
 elif [[ $OS == 'cygwin' ]]; then
   alias open="cygstart"
