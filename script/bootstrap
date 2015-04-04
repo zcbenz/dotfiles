@@ -102,17 +102,6 @@ git submodule sync --quiet
 git submodule update --init --quiet --recursive
 cd - > /dev/null
 
-progress 'Downloading node'
-if source "$SOURCE/script/update_node"; then
-  if [[ $NODE_VERSION == $SYSTEM_NODE_VERSION ]]; then
-    success 'Current node is already the latest version'
-  else
-    success "Node is updated to $NODE_VERSION"
-  fi
-else
-  fail 'Cannot update node'
-fi
-
 if [[ $PLATFORM == 'darwin' ]]; then
   progress 'Installing other useful tools'
   has_command tree || cross_install tree
