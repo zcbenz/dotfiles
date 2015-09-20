@@ -1,7 +1,7 @@
 syntax on
 set nocompatible
 set notimeout
-set smartindent
+set nosmartindent
 set nobackup
 set number
 set nowrap
@@ -52,6 +52,9 @@ let g:loaded_AlignMapsPlugin = 'no'
 let g:fuf_modesDisable = []
 let g:SuperTabLongestHighlight = 0
 let &termencoding=&encoding
+
+" Don't report error of C++ lambadas
+let c_no_curly_error=1
 
 " use flavored-markdown by default
 augroup markdown

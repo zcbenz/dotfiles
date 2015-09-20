@@ -97,22 +97,21 @@ snippet docx
 	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 snippet html
 	<html>
-	${1}
+	${0}
 	</html>
 snippet xhtml
 	<html xmlns="http://www.w3.org/1999/xhtml">
-	${1}
+	${0}
 	</html>
 snippet body
 	<body>
-		${1}
+	  ${0}
 	</body>
 snippet head
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8"`Close()`>
-
-		<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
-		${2}
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8"`Close()`>
+	  <title>${0:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+	  $1
 	</head>
 snippet title
 	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
