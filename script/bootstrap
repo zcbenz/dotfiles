@@ -114,6 +114,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command nak || sudo npm install -g nak
   has_command prettyjson || sudo npm install -g prettyjson
   has_command ag || cross_install the_silver_searcher
+  has_command autojump || cross_install autojump
   success "Tools installed"
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
   progress 'Installing system tools'
