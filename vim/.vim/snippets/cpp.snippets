@@ -20,7 +20,7 @@ snippet cl
 	class ${1:`substitute(Filename('', 'name'), '\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)', '\u\1\2', 'g')`} ${0}{
 	 public:
 		$1();
-		virtual ~$1();
+		~$1() override;
 	
 	 private:
 	  DISALLOW_COPY_AND_ASSIGN($1);

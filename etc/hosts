@@ -1,5 +1,6 @@
 54.249.141.255 ec2
 207.226.141.138 qy
+208.52.191.140 mac
 
 # 屏蔽广告联盟
 0.0.0.0 m1.baidu.com
@@ -59,3 +60,7 @@
 
 0.0.0.0 p.tanx.com
 0.0.0.0 googleads.g.doubleclick.net
+0.0.0.0 ads.exoclick.com
+0.0.0.0 main.exoclick.co
+0.0.0.0 syndication.exoclick.com
+0.0.0.0 3a.3alian.net

@@ -4,9 +4,11 @@ if ! DOWNLOAD_PAGE=$(curl -fsSkL http://nodejs.org/download/); then
   exit 1;
 fi
 
-NODE_VERSION=$(echo "$DOWNLOAD_PAGE" \
-               | awk '/Current version:/ { print }' \
-               | awk -F"[<>]" '{ print $5 }')
+NODE_VERSION=v4.2.2
+
+# NODE_VERSION=$(echo "$DOWNLOAD_PAGE" \
+#                | awk '/Current version:/ { print }' \
+#                | awk -F"[<>]" '{ print $5 }')
 
 # Test system's node version if we have node installed
 if command -v node >/dev/null 2>&1; then
