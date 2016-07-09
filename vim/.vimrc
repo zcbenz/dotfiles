@@ -1,7 +1,7 @@
 syntax on
 set nocompatible
 set notimeout
-set nosmartindent
+set smartindent
 set nobackup
 set number
 set nowrap
