@@ -66,6 +66,7 @@ complete -o default -o nospace -F _jump jump
 if [[ $OS == 'darwin' ]]; then
   export PATH=~/bin/darwin:/usr/local/bin:$PATH
 elif [[ $OS == 'linux-gnu' ]]; then
+  source /usr/share/autojump/autojump.sh
   alias open="xdg-open"
 elif [[ $OS == 'cygwin' ]]; then
   alias open="cygstart"
