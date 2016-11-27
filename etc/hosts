@@ -57,6 +57,8 @@
 0.0.0.0 hm.baidu.com
 0.0.0.0 cpro.baidustatic.com
 0.0.0.0 dup.baidustatic.com
+0.0.0.0 bdimg.share.baidu.com
+0.0.0.0 su.bdimg.com
 
 0.0.0.0 p.tanx.com
 0.0.0.0 googleads.g.doubleclick.net
@@ -64,3 +66,30 @@
 0.0.0.0 main.exoclick.co
 0.0.0.0 syndication.exoclick.com
 0.0.0.0 3a.3alian.net
+0.0.0.0 static.javhd.com
+0.0.0.0 spot-01.atas.io
+0.0.0.0 s3.atas.io
+0.0.0.0 l1.fwt0.com
+0.0.0.0 l2.fwt0.com
+0.0.0.0 l3.fwt0.com
+0.0.0.0 l4.fwt0.com
+0.0.0.0 l5.fwt0.com
+0.0.0.0 l6.fwt0.com
+0.0.0.0 l7.fwt0.com
+0.0.0.0 l8.fwt0.com
+0.0.0.0 maccleanersecurity.com
+0.0.0.0 subhd.kkcaicai.com
+
+# Singapore shit
+0.0.0.0 static.donation-tools.org
+0.0.0.0 kdv.decipheringwarns.com
+0.0.0.0 cdncache-a.akamaihd.net
+0.0.0.0 pstatic.davebestdeals.com
+0.0.0.0 cdn.visadd.com
+0.0.0.0 a.visadd.com
+0.0.0.0 yxo.warmportrait.com
+0.0.0.0 static.coupontime00.coupontime.co
+0.0.0.0 tot.employeesdirectorships.com
+0.0.0.0 static.pricepeep00.pricepeep.net
+0.0.0.0 static.cmptch.com
+0.0.0.0 partners.cmptch.com
