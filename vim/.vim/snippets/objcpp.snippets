@@ -1,0 +1,320 @@
+# Namespace
+snippet ans
+	namespace {
+
+	${0}
+
+	}  // namespace
+snippet fns
+	namespace ${1:`Filename('', 'my')`} {
+	${0}
+	}
+snippet ns
+	namespace ${1:`Filename('', 'my')`} {
+
+	${0}
+
+	}  // namespace $1
+# Class
+snippet cl
+	class ${1:`substitute(Filename('', 'name'), '\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)', '\u\1\2', 'g')`} ${0}{
+	 public:
+		$1();
+		~$1() override;
+	
+	 private:
+	  DISALLOW_COPY_AND_ASSIGN($1);
+	};
+# #import <...>
+snippet Imp
+	#import <${1:Cocoa/Cocoa.h}>${2}
+# #import "..."
+snippet imp
+	#import "${1:`Filename()`.h}"${2}
+# @selector(...)
+snippet sel
+	@selector(${1:method}:)${3}
+# @"..." string
+snippet s
+	@"${1}"${2}
+# Object
+snippet o
+	${1:NSObject} *${2:foo} = [${3:$1 alloc}]${4};${5}
+# NSLog(...)
+snippet log
+	NSLog(@"${1:%@}"${2});${3}
+# Class
+snippet objc
+	@interface ${1:`Filename('', 'someClass')`} : ${2:NSObject}
+	{
+	}
+	@end
+
+	@implementation $1
+	${3}
+	@end
+# Class Interface
+snippet int
+	@interface ${1:`Filename('', 'someClass')`} : ${2:NSObject}
+	{${3}
+	}
+	${4}
+	@end
+# Class Implementation
+snippet impl
+	@implementation ${1:`Filename('', 'someClass')`}
+	${2}
+	@end
+snippet init
+	- (id)init
+	{
+		[super init];
+		return self;
+	}
+snippet ifself
+	if (self = [super init]) {
+		${1:/* code */}
+	}
+	return self;
+snippet ibo
+	IBOutlet ${1:NSSomeClass} *${2:$1};${3}
+# Category
+snippet cat
+	@interface ${1:NSObject} (${2:Category})
+	@end
+
+	@implementation $1 ($2)
+	${3}
+	@end
+# Category Interface
+snippet cath
+	@interface ${1:NSObject} (${2:Category})
+	${3}
+	@end
+# NSArray
+snippet array
+	NSMutableArray *${1:array} = [NSMutable array];${2}
+# NSDictionary
+snippet dict
+	NSMutableDictionary *${1:dict} = [NSMutableDictionary dictionary];${2}
+# NSBezierPath
+snippet bez
+	NSBezierPath *${1:path} = [NSBezierPath bezierPath];${2}
+# Method
+snippet m
+	- (${1:id})${2:method}
+	{
+		${3}
+	}
+# Method declaration
+snippet md
+	- (${1:id})${2:method};${3}
+# IBAction declaration
+snippet ibad
+	- (IBAction)${1:method}:(${2:id})sender;${3}
+# IBAction method
+snippet iba
+	- (IBAction)${1:method}:(${2:id})sender
+	{
+		${3}
+	}
+# awakeFromNib method
+snippet wake
+	- (void)awakeFromNib
+	{
+		${1}
+	}
+# Class Method
+snippet M
+	+ (${1:id})${2:method}
+	{${3}
+		return nil;
+	}
+# Sub-method (Call super)
+snippet sm
+	- (${1:id})${2:method}
+	{
+		[super $2];${3}
+		return self;
+	}
+# Method: Initialize
+snippet I
+	+ (void) initialize
+	{
+		[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWIthObjectsAndKeys:
+			${1}@"value", @"key",
+			nil]];
+	}
+# Accessor Methods For:
+# Object
+snippet objacc
+	- (${1:id})${2:thing}
+	{
+		return $2;
+	}
+
+	- (void)set$2:($1)${3:new$2}
+	{
+		[$3 retain];
+		[$2 release];
+		$2 = $3;
+	}${4}
+# for (object in array)
+snippet forin
+	for (${1:Class} *${2:some$1} in ${3:array}) {
+		${4}
+	}
+snippet forarray
+	unsigned int ${1:object}Count = [${2:array} count];
+
+	for (unsigned int index = 0; index < $1Count; index++) {
+		${3:id} $1 = [$2 $1AtIndex:index];
+		${4}
+	}
+# IBOutlet
+# @property (Objective-C 2.0)
+snippet prop
+	@property (${1:retain}) ${2:NSSomeClass} ${3:*$2};${4}
+# @synthesize (Objective-C 2.0)
+snippet syn
+	@synthesize ${1:property};${2}
+# [[ alloc] init]
+snippet alloc
+	[[${1:foo} alloc] init${2}];${3}
+# retain
+snippet ret
+	[${1:foo} retain];${2}
+# release
+snippet rel
+	[${1:foo} release];
+	${2:$1 = nil;}
+# autorelease
+snippet arel
+	[${1:foo} autorelease];
+# autorelease pool
+snippet pool
+	NSAutoreleasePool *${1:pool} = [[NSAutoreleasePool alloc] init];
+	${2:/* code */}
+	[$1 drain];
+# Throw an exception
+snippet except
+	NSException *${1:badness};
+	$1 = [NSException exceptionWithName:@"${2:$1Name}"
+	                             reason:@"${3}"
+	                           userInfo:nil];
+	[$1 raise];
+snippet prag
+	#pragma mark ${1:foo}
+snippet cl
+	@class ${1:Foo};${2}
+snippet color
+	[[NSColor ${1:blackColor}] set];
+# main()
+snippet main
+	int main(int argc, const char *argv[])
+	{
+		${0}
+		return 0;
+	}
+# #include <...>
+snippet Inc
+	#include <${1:stdio.h}>${2}
+# #include "..."
+snippet inc
+	#include "${1:`strpart(strpart(expand('%:p'), 0, strridx(expand('%:p'), '.')), strlen(system('git rev-parse --show-toplevel'))).'.h'`}"${2}
+# #ifndef ... #define ... #endif
+snippet Def
+	#ifndef $1
+	#define ${1:SYMBOL} ${2:value}
+	#endif${3}
+snippet def
+	#define 
+snippet ifdef
+	#ifdef ${1:FOO}
+		${2:#define }
+	#endif
+snippet #if
+	#if ${1:FOO}
+		${2}
+	#endif
+# Header Include-Guard
+# (the randomizer code is taken directly from TextMate; it could probably be
+# cleaner, I don't know how to do it in vim script)
+snippet once
+	#ifndef ${1:`toupper(strpart(substitute(expand('%:p'), '/\|\\\|\.', '_', 'g'), strlen(system('git rev-parse --show-toplevel'))).'_')`}
+	#define $1
+
+	${0}
+
+	#endif  // $1
+# If Condition
+snippet if
+	if (${1:/* condition */}) {
+		${0:/* code */}
+	}
+snippet el
+	else {
+		${1}
+	}
+# Tertiary conditional
+snippet t
+	${1:/* condition */} ? ${2:a} : ${3:b}
+# Do While Loop
+snippet do
+	do {
+		${2:/* code */}
+	} while (${1:/* condition */});
+# While Loop
+snippet wh
+	while (${1:/* condition */}) {
+		${2:/* code */}
+	}
+# For Loop
+snippet for
+	for (${2:i} = 0; $2 < ${1:count}; $2${3:++}) {
+		${4:/* code */}
+	}
+# Custom For Loop
+snippet forr
+	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
+		${5:/* code */}
+	}
+# Function
+snippet fun
+	${1:void} ${2:function_name}(${3})
+	{
+		${4:/* code */}
+	}
+# Function Declaration
+snippet fund
+	${1:void} ${2:function_name}(${3});${4}
+# Typedef
+snippet td
+	typedef ${1:int} ${2:MyCustomType};${3}
+# Struct
+snippet st
+	struct ${1:`Filename('$1_t', 'name')`} {
+		${2:/* data */}
+	}${3: /* optional variable list */};${4}
+# Typedef struct
+snippet tds
+	typedef struct ${2:_$1 }{
+		${3:/* data */}
+	} ${1:`Filename('$1_t', 'name')`};
+# Typdef enum
+snippet tde
+	typedef enum {
+		${1:/* data */}
+	} ${2:foo};
+# printf
+# unfortunately version this isn't as nice as TextMates's, given the lack of a
+# dynamic `...`
+snippet pr
+	printf("${1:%s}\n"${2});${3}
+# fprintf (again, this isn't as nice as TextMate's version, but it works)
+snippet fpr
+	fprintf(${1:stderr}, "${2:%s}\n"${3});${4}
+snippet .
+	[${1}]${2}
+snippet un
+	unsigned
