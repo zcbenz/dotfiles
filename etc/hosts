@@ -93,6 +93,16 @@
 0.0.0.0 www.liveadexchanger.com
 0.0.0.0 pagead2.googlesyndication.com
 0.0.0.0 www.google-analytics.com
+0.0.0.0 g.click.taobao.com
+0.0.0.0 alimama.alicdn.com
+0.0.0.0 a.alimama.cn
+0.0.0.0 c.cnzz.com
+0.0.0.0 s11.cnzz.com
+0.0.0.0 z13.cnzz.com
+0.0.0.0 js.users.51.la
+0.0.0.0 wnacg.disqus.com
+0.0.0.0 j.sc1369.com
+0.0.0.0 ds.sc1369.com
 
 # Singapore shit
 0.0.0.0 static.donation-tools.org
