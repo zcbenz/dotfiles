@@ -1,6 +1,5 @@
 syntax on
 set nocompatible
-set notimeout
 set smartindent
 set nobackup
 set number
@@ -19,6 +18,9 @@ set scrolloff=2
 set fdm=marker
 set t_Co=256
 set fileencodings=utf-8,gbk,ucs-bom,cp936
+
+" let esc have no delay
+set timeoutlen=1000 ttimeoutlen=0
 
 set visualbell           " don't beep
 set noerrorbells         " don't beep
