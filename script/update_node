@@ -4,7 +4,7 @@ if ! DOWNLOAD_PAGE=$(curl -fsSkL http://nodejs.org/download/); then
   exit 1;
 fi
 
-NODE_VERSION=v4.2.2
+NODE_VERSION=v7.7.1
 
 # NODE_VERSION=$(echo "$DOWNLOAD_PAGE" \
 #                | awk '/Current version:/ { print }' \
@@ -64,7 +64,7 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
     curl -fsSkL $NODE_TARBALL_URL | tar -zx || exit 1
 
     # Install
-    rm $NODE_DIST_NAME/ChangeLog
+    rm $NODE_DIST_NAME/CHANGELOG.md
     rm $NODE_DIST_NAME/LICENSE
     rm $NODE_DIST_NAME/README.md
     sudo cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
