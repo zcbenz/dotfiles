@@ -25,9 +25,6 @@
 [submodule "vim/.vim/bundle/trailing-whitespace"]
 	path = vim/.vim/bundle/trailing-whitespace
 	url = https://github.com/bronson/vim-trailing-whitespace.git
-[submodule "vim/.vim/bundle/vim-jade"]
-	path = vim/.vim/bundle/vim-jade
-	url = https://github.com/digitaltoad/vim-jade.git
 [submodule "vim/.vim/bundle/vim-rust"]
 	path = vim/.vim/bundle/vim-rust
 	url = https://github.com/wting/rust.vim.git
@@ -58,3 +55,6 @@
 [submodule "vim/.vim/bundle/vim-javascript"]
 	path = vim/.vim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
+[submodule "vim/.vim/bundle/vim-pug"]
+	path = vim/.vim/bundle/vim-pug
+	url = https://github.com/digitaltoad/vim-pug
