@@ -1,14 +1,14 @@
 #!/bin/bash
 
-if ! DOWNLOAD_PAGE=$(curl -fsSkL http://nodejs.org/download/); then
+if ! DOWNLOAD_PAGE=$(curl -fsSkL https://nodejs.org/en/download/current/); then
   exit 1;
 fi
 
-NODE_VERSION=v7.7.1
+NODE_VERSION=v8.2.1
 
-# NODE_VERSION=$(echo "$DOWNLOAD_PAGE" \
-#                | awk '/Current version:/ { print }' \
-#                | awk -F"[<>]" '{ print $5 }')
+NODE_VERSION=$(echo "$DOWNLOAD_PAGE" \
+               | awk '/data-version=/ { print }' \
+               | sed 's/.*data-version="\(.*\)".*/\1/g')
 
 # Test system's node version if we have node installed
 if command -v node >/dev/null 2>&1; then
