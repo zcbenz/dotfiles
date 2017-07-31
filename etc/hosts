@@ -1,6 +1,7 @@
-54.249.141.255 ec2
-207.226.141.138 qy
 208.52.191.140 mac
+
+# 禁用迅雷自动更新
+0.0.0.0 liveupdate.mac.sandai.net
 
 # 屏蔽广告联盟
 0.0.0.0 m1.baidu.com
@@ -59,6 +60,7 @@
 0.0.0.0 dup.baidustatic.com
 0.0.0.0 bdimg.share.baidu.com
 0.0.0.0 su.bdimg.com
+0.0.0.0 ubmcmm.baidustatic.com
 
 0.0.0.0 p.tanx.com
 0.0.0.0 googleads.g.doubleclick.net
@@ -86,9 +88,6 @@
 0.0.0.0 tpc.googlesyndication.com
 0.0.0.0 s0.2mdn.net
 0.0.0.0 s.effectivemeasure.net
-0.0.0.0 fsfdvs.pr34923.com
-0.0.0.0 u484012.pr00001.com
-0.0.0.0 u484012.nr1234.com
 0.0.0.0 c.codeonclick.com
 0.0.0.0 www.liveadexchanger.com
 0.0.0.0 pagead2.googlesyndication.com
@@ -103,17 +102,30 @@
 0.0.0.0 wnacg.disqus.com
 0.0.0.0 j.sc1369.com
 0.0.0.0 ds.sc1369.com
+0.0.0.0 dl.8ox.cn
+0.0.0.0 66.8ox.cn
+0.0.0.0 d16b4.8ox.cn
+0.0.0.0 clickadu.com
+0.0.0.0 onclkds.com
+0.0.0.0 fastpopunder.com
+0.0.0.0 www.xianliao.me
+0.0.0.0 www.suxiu72.com
+0.0.0.0 www.6dad.com
+0.0.0.0 s7.addthis.com
+0.0.0.0 m.addthis.com
+0.0.0.0 j.qiqiww.com
+0.0.0.0 s3.limeishang.com
+0.0.0.0 s1.huiqituan.com
+0.0.0.0 images.balaca.cn
+0.0.0.0 j.qiqivv.com
+0.0.0.0 nwejs.alcryp.com
+0.0.0.0 www.jwge79.com
+0.0.0.0 s6.idaguang.com
 
-# Singapore shit
-0.0.0.0 static.donation-tools.org
-0.0.0.0 kdv.decipheringwarns.com
-0.0.0.0 cdncache-a.akamaihd.net
-0.0.0.0 pstatic.davebestdeals.com
-0.0.0.0 cdn.visadd.com
-0.0.0.0 a.visadd.com
-0.0.0.0 yxo.warmportrait.com
-0.0.0.0 static.coupontime00.coupontime.co
-0.0.0.0 tot.employeesdirectorships.com
-0.0.0.0 static.pricepeep00.pricepeep.net
-0.0.0.0 static.cmptch.com
-0.0.0.0 partners.cmptch.com
+0.0.0.0 fsfdvs.pr34923.com
+0.0.0.0 u484012.pr00001.com
+0.0.0.0 u484012.nr1234.com
+0.0.0.0 js152.fenggejiaju.com
+0.0.0.0 js7349.tongqing2015.com
+0.0.0.0 js6859.gdskywings.com
+0.0.0.0 js432.dalianhengtai.com
