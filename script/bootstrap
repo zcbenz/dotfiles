@@ -45,11 +45,7 @@ link_and_backup .vimrc vim/.vimrc
 link_and_backup .custom_bashrc bash/.bashrc
 link_and_backup .gitconfig git/.gitconfig
 link_and_backup .tools_aliases bash/.tools_aliases
-link_and_backup bin/git-svn-diff bin/git-svn-diff
-link_and_backup bin/git-delete-submodule bin/git-delete-submodule
-link_and_backup bin/seuroute bin/seuroute
 link_and_backup bin/rename bin/rename
-link_and_backup bin/svn-upgrade bin/svn-upgrade
 link_and_backup bin/proxyon bin/proxyon
 link_and_backup bin/proxyoff bin/proxyoff
 if [[ $PLATFORM == 'darwin' ]]; then
@@ -112,8 +108,6 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command ohcount || cross_install ohcount
   has_command s3cmd || cross_install s3cmd
   has_command gsed || cross_install gnu-sed
-  has_command nak || sudo npm install -g nak
-  has_command prettyjson || sudo npm install -g prettyjson
   has_command ag || cross_install the_silver_searcher
   has_command autojump || cross_install autojump
   has_command realpath || cross_install coreutils
@@ -125,8 +119,6 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
   has_command s3cmd || cross_install s3cmd
   has_command vim || cross_install vim
   has_command autojump || cross_install autojump
-  has_command nak || sudo npm install -g nak
-  has_command prettyjson || sudo npm install -g prettyjson
 
   if [[ $OS == 'Ubuntu' ]]; then
     if ! has_command mosh; then
@@ -151,46 +143,6 @@ fi
 cp /etc/hosts $BACKUP
 bash $SOURCE/script/update_hosts $SOURCE/etc/hosts
 success 'Update hosts'
-
-if [ ! -e "$TARGET/bin/depot_tools" ]; then
-  progress 'Getting depot_tools'
-  git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git "$TARGET/bin/depot_tools"
-  success 'depot_tools downloaded'
-fi
-
-if [ ! -e "$TARGET/codes/xunlei-lixian" ]; then
-  progress 'Getting xunlei-lixian'
-  git clone https://github.com/iambus/xunlei-lixian.git "$TARGET/codes/xunlei-lixian"
-  success 'xunlei-lixian downloaded'
-fi
-
-if [ ! -e "$TARGET/codes/gyp" ]; then
-  progress 'Getting gyp'
-  git clone https://github.com/svn2github/gyp.git "$TARGET/codes/gyp"
-  cd "$TARGET/codes/gyp"
-  sudo python setup.py install
-  cd - > /dev/null
-  success 'gyp downloaded'
-fi
-
-if [ ! -e "$TARGET/codes/boto" ]; then
-  progress 'Getting boto'
-  git clone https://github.com/boto/boto.git "$TARGET/codes/boto"
-  cd "$TARGET/codes/boto"
-  sudo python setup.py install
-  cd - > /dev/null
-  success 'boto downloaded'
-fi
-
-if [ ! -e "$TARGET/bin/hub" ]; then
-  progress 'Getting hub'
-  if curl http://defunkt.io/hub/standalone -sLo $TARGET/bin/hub &&
-     chmod +x $TARGET/bin/hub; then
-    success 'hub downloaded'
-  else
-    fail 'Cannot download hub'
-  fi
-fi
 
 if [[ $PLATFORM == 'linux-gnu' ]]; then
   source "$SOURCE/script/solarize" light
