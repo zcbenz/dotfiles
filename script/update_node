@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! DOWNLOAD_PAGE=$(curl -fsSkL https://nodejs.org/en/download/current/); then
+if ! DOWNLOAD_PAGE=$(curl -fsSkL https://nodejs.org/en/download/); then
   exit 1;
 fi
 
