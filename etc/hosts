@@ -1,7 +1,9 @@
+54.249.141.255 ec2
+207.226.141.138 qy
 208.52.191.140 mac
-
-# 禁用迅雷自动更新
-0.0.0.0 liveupdate.mac.sandai.net
+147.75.70.182 arm64
+137.135.90.236 azure
+35.234.4.196 gc
 
 # 屏蔽广告联盟
 0.0.0.0 m1.baidu.com
@@ -61,9 +63,30 @@
 0.0.0.0 bdimg.share.baidu.com
 0.0.0.0 su.bdimg.com
 0.0.0.0 ubmcmm.baidustatic.com
-
-0.0.0.0 p.tanx.com
+0.0.0.0 ads-union.jd.com
+0.0.0.0 x.jd.com
+0.0.0.0 u-x.jd.com
+0.0.0.0 ulog.jd.com
 0.0.0.0 googleads.g.doubleclick.net
+0.0.0.0 yads.c.yimg.jp
+0.0.0.0 yads.yjtag.yahoo.co.jp
+0.0.0.0 ads.yap.yahoo.com
+0.0.0.0 im.ov.yahoo.co.jp
+0.0.0.0 sh.adingo.jp
+0.0.0.0 bannerfarm.aolp.jp
+0.0.0.0 jp.at.atwola.com
+0.0.0.0 apx.moatads.com
+0.0.0.0 opps.taboola.com
+0.0.0.0 taboola-d.openx.net
+0.0.0.0 wf.taboola.com
+0.0.0.0 trc.taboola.com
+0.0.0.0 cdn.taboola.com
+0.0.0.0 cds.taboola.com
+0.0.0.0 convhkmp.taboola.com
+0.0.0.0 ads.adaptv.advertising.com
+
+0.0.0.0 ioredi.com
+0.0.0.0 p.tanx.com
 0.0.0.0 ads.exoclick.com
 0.0.0.0 main.exoclick.co
 0.0.0.0 syndication.exoclick.com
@@ -121,6 +144,26 @@
 0.0.0.0 nwejs.alcryp.com
 0.0.0.0 www.jwge79.com
 0.0.0.0 s6.idaguang.com
+0.0.0.0 cpv-ads1.ggytc.com
+0.0.0.0 p2.hyz86.com
+0.0.0.0 www.xianliao.me
+0.0.0.0 js152.cnpinzhuo.com
+0.0.0.0 dfx.xiaoyuanzuqiu.cn
+0.0.0.0 p2.hyz86.com
+0.0.0.0 dfx.shhuixiangwuliu.com
+0.0.0.0 geo.moatads.com
+0.0.0.0 uac.advertising.com
+0.0.0.0 dtm.advertising.com
+0.0.0.0 r1.ace.advertising.com
+0.0.0.0 at.atwola.com
+0.0.0.0 www.outbid.io
+0.0.0.0 adserver.juicyads.com
+0.0.0.0 ads-a.juicyads.com
+0.0.0.0 moradu.com
+0.0.0.0 api.huo360.com
+0.0.0.0 b3.jandan.net
+0.0.0.0 xads.incnjp.com
+0.0.0.0 qzonestyle.gtimg.cn
 
 0.0.0.0 fsfdvs.pr34923.com
 0.0.0.0 u484012.pr00001.com
@@ -129,3 +172,6 @@
 0.0.0.0 js7349.tongqing2015.com
 0.0.0.0 js6859.gdskywings.com
 0.0.0.0 js432.dalianhengtai.com
+
+# 禁用迅雷自动更新
+0.0.0.0 liveupdate.mac.sandai.net

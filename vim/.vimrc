@@ -64,4 +64,7 @@ augroup markdown
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
+" Map .mm to Objective-C++.
+autocmd BufNewFile,BufRead *.mm set syntax=objcpp
+
 call pathogen#infect()
