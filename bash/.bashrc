@@ -65,6 +65,8 @@ complete -o default -o nospace -F _jump jump
 # OS specific commands
 if [[ $OS == 'darwin' ]]; then
   export PATH=~/bin/darwin:/usr/local/sbin:/usr/local/bin:$PATH
+  alias gb="git rev-parse --abbrev-ref HEAD | tee /dev/tty | tr -d '\n' | pbcopy"
+  alias gh="git rev-parse HEAD | tee /dev/tty | tr -d '\n' | pbcopy"
 elif [[ $OS == 'linux-gnu' ]]; then
   source /usr/share/autojump/autojump.sh
   alias open="xdg-open"
