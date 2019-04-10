@@ -58,3 +58,6 @@
 [submodule "vim/.vim/bundle/vim-pug"]
 	path = vim/.vim/bundle/vim-pug
 	url = https://github.com/digitaltoad/vim-pug
+[submodule "vim/.vim/bundle/vim-typescript"]
+	path = vim/.vim/bundle/vim-typescript
+	url = https://github.com/leafgarland/typescript-vim
