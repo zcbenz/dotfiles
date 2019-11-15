@@ -7,6 +7,8 @@ alias ll='ls -lh'
 alias df='df -h'
 alias sudo='sudo env PATH=$PATH' # sudo with current PATH
 alias cn='env LANG=zh_CN.UTF-8 '
+alias gd="git-branch-delete"
+alias gs="switch-branch"
 function mkcd ()
 {
     mkdir $1 && cd $1
