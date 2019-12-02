@@ -2,11 +2,10 @@
 207.226.141.138 qy
 208.52.191.140 mac
 147.75.70.182 arm64
-137.135.90.236 azure
 35.234.4.196 gc
+137.135.90.236 azure
 192.168.1.16 pi
 
-# 屏蔽广告联盟
 0.0.0.0 m1.baidu.com
 :: m1.baidu.com
 0.0.0.0 mobads.baidu.com
@@ -203,7 +202,6 @@
 :: www.spot.im
 0.0.0.0 player.spotim.market
 :: player.spotim.market
-
 0.0.0.0 ioredi.com
 :: ioredi.com
 0.0.0.0 p.tanx.com
@@ -376,6 +374,3 @@
 :: ww.xitek.com
 0.0.0.0 www8.xitek.com
 :: www8.xitek.com
-
-# 禁用迅雷自动更新
-0.0.0.0 liveupdate.mac.sandai.net
