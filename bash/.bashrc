@@ -79,7 +79,7 @@ elif [[ $OS == 'cygwin' ]]; then
   alias npm="npm.cmd"
   export LC_ALL='en_US.UTF-8'
   # Force UTF-8 code page.
-  chcp.com 437
+  chcp.com 437 > /dev/null
 fi
 
 # Import secrect environments
