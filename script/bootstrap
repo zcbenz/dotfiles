@@ -43,11 +43,13 @@ function link_and_backup {
 link_and_backup .vim vim/.vim
 link_and_backup .vimrc vim/.vimrc
 link_and_backup .custom_bashrc bash/.bashrc
-link_and_backup .gitconfig git/.gitconfig
 link_and_backup .tools_aliases bash/.tools_aliases
 link_and_backup bin/rename bin/rename
 link_and_backup bin/proxyon bin/proxyon
 link_and_backup bin/proxyoff bin/proxyoff
+if [[ $PLATFORM != 'cygwin' ]]; then
+  link_and_backup .gitconfig git/.gitconfig
+fi
 if [[ $PLATFORM == 'darwin' ]]; then
   link_and_backup bin/darwin/adb bin/darwin/adb
   link_and_backup bin/darwin/fastboot bin/darwin/fastboot
