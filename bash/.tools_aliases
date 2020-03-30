@@ -1,4 +1,39 @@
 #!/bin/bash
 
-export PATH=/usr/local/git/bin:~/bin:~/bin/depot_tools:/opt/github/bin:$PATH
-alias xunlei='python ~/codes/xunlei-lixian/lixian_cli.py'
+export PATH=~/bin:$PATH
+
+# Build Electron.
+alias eb="~/codes/be/build.js"
+
+# Convient settings
+alias l='ls -p'
+alias la='ls -a'
+alias ll='ls -lh'
+alias df='df -h'
+alias sudo='sudo env PATH=$PATH' # sudo with current PATH
+alias cn='env LANG=zh_CN.UTF-8 '
+alias gd="git-branch-delete"
+alias gs="switch-branch"
+function mkcd ()
+{
+    mkdir $1 && cd $1
+}
+
+# OS specific commands
+OS=${OSTYPE//[0-9.]/} # remove trailing version like in darwin9.0
+if [[ $OS == 'darwin' ]]; then
+  export PATH=~/bin/darwin:/usr/local/sbin:/usr/local/bin:$PATH
+  alias gb="git rev-parse --abbrev-ref HEAD | tee /dev/tty | tr -d '\n' | pbcopy"
+  alias gh="git rev-parse HEAD | tee /dev/tty | tr -d '\n' | pbcopy"
+  alias e="~/codes/be/src/out/Default/Electron.app/Contents/MacOS/Electron"
+  alias eb="~/codes/be/build.js"
+elif [[ $OS == 'linux-gnu' ]]; then
+  alias open="xdg-open"
+  alias e="~/codes/be/src/out/Default/electron"
+elif [[ $OS == 'cygwin' ]]; then
+  alias open="cygstart"
+  alias ls="ls --color"
+  alias ahk="/cygdrive/c/Program\ Files/AutoHotkey/AutoHotkey.exe"
+  alias npm="npm.cmd"
+  alias e="~/codes/be/src/out/Default/electron.exe"
+fi
