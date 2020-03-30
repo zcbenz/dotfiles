@@ -69,6 +69,8 @@ if [[ $OS == 'darwin' ]]; then
   export PATH=~/bin/darwin:/usr/local/sbin:/usr/local/bin:$PATH
   alias gb="git rev-parse --abbrev-ref HEAD | tee /dev/tty | tr -d '\n' | pbcopy"
   alias gh="git rev-parse HEAD | tee /dev/tty | tr -d '\n' | pbcopy"
+  alias e="~/codes/be/src/out/Default/Electron.app/Contents/MacOS/Electron"
+  alias eb="~/codes/be/build.js"
 elif [[ $OS == 'linux-gnu' ]]; then
   source /usr/share/autojump/autojump.sh
   alias open="xdg-open"
