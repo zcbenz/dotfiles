@@ -54,6 +54,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
   link_and_backup bin/darwin/adb bin/darwin/adb
   link_and_backup bin/darwin/fastboot bin/darwin/fastboot
   link_and_backup bin/darwin/battery bin/darwin/battery
+  link_and_backup bin/darwin/video_to_gif_osx bin/darwin/video_to_gif_osx
 elif [[ $PLATFORM == 'cygwin' ]]; then
   link_and_backup bin/sudo bin/sudo
   link_and_backup bin/pbcopy bin/pbcopy
