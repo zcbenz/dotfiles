@@ -122,6 +122,7 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
   has_command s3cmd || cross_install s3cmd
   has_command vim || cross_install vim
   has_command autojump || cross_install autojump
+  has_command gconftool-2 || cross_install gconf2
 
   if [[ $OS == 'Ubuntu' ]]; then
     if ! has_command mosh; then
