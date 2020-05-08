@@ -1,33 +1,24 @@
-[submodule "vim/.vim/bundle/vim-coffee-script"]
-	path = vim/.vim/bundle/vim-coffee-script
-	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule "vim/.vim/bundle/gyp"]
-	path = vim/.vim/bundle/gyp
-	url = https://github.com/kelan/gyp.vim.git
 [submodule "vim/.vim/bundle/markdown"]
 	path = vim/.vim/bundle/markdown
 	url = git@github.com:tpope/vim-markdown.git
 [submodule "vim/.vim/bundle/github-flavored-markdown"]
 	path = vim/.vim/bundle/github-flavored-markdown
 	url = https://github.com/jtratner/vim-flavored-markdown
-[submodule "vim/.vim/bundle/fuzzy-finder"]
-	path = vim/.vim/bundle/fuzzy-finder
-	url = https://github.com/vim-scripts/FuzzyFinder.git
 [submodule "vim/.vim/bundle/acp"]
 	path = vim/.vim/bundle/acp
 	url = https://github.com/vim-scripts/AutoComplPop.git
 [submodule "vim/.vim/bundle/enhanced-commentify"]
 	path = vim/.vim/bundle/enhanced-commentify
 	url = https://github.com/vim-scripts/EnhCommentify.vim.git
+[submodule "vim/.vim/bundle/fuzzy-finder"]
+	path = vim/.vim/bundle/fuzzy-finder
+	url = https://github.com/vim-scripts/FuzzyFinder.git
 [submodule "vim/.vim/bundle/splitjoin"]
 	path = vim/.vim/bundle/splitjoin
 	url = https://github.com/AndrewRadev/splitjoin.vim
 [submodule "vim/.vim/bundle/trailing-whitespace"]
 	path = vim/.vim/bundle/trailing-whitespace
 	url = https://github.com/bronson/vim-trailing-whitespace.git
-[submodule "vim/.vim/bundle/vim-rust"]
-	path = vim/.vim/bundle/vim-rust
-	url = https://github.com/wting/rust.vim.git
 [submodule "vim/.vim/bundle/vim-snipmate"]
 	path = vim/.vim/bundle/vim-snipmate
 	url = https://github.com/garbas/vim-snipmate.git
@@ -37,18 +28,12 @@
 [submodule "vim/.vim/bundle/vim-addon-mw-utils"]
 	path = vim/.vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
-[submodule "vim/.vim/bundle/align"]
-	path = vim/.vim/bundle/align
-	url = https://github.com/vim-scripts/Align.git
 [submodule "vim/.vim/bundle/L9"]
 	path = vim/.vim/bundle/L9
 	url = https://github.com/vim-scripts/L9.git
 [submodule "vim/.vim/bundle/vim-cpp-enhanced-highlight"]
 	path = vim/.vim/bundle/vim-cpp-enhanced-highlight
 	url = https://github.com/octol/vim-cpp-enhanced-highlight.git
-[submodule "vim/.vim/bundle/vim-toml"]
-	path = vim/.vim/bundle/vim-toml
-	url = https://github.com/cespare/vim-toml.git
 [submodule "vim/.vim/bundle/vim-gn"]
 	path = vim/.vim/bundle/vim-gn
 	url = https://github.com/c0nk/vim-gn
@@ -61,3 +46,6 @@
 [submodule "vim/.vim/bundle/vim-typescript"]
 	path = vim/.vim/bundle/vim-typescript
 	url = https://github.com/leafgarland/typescript-vim
+[submodule "vim/.vim/bundle/ctrlp"]
+	path = vim/.vim/bundle/ctrlp
+	url = https://github.com/ctrlpvim/ctrlp.vim

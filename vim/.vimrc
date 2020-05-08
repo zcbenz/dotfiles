@@ -50,10 +50,10 @@ nnoremap <leader>w :bw<cr>
 nnoremap <leader>a :wa<cr>
 nnoremap <leader>q :qa<cr>
 
-let g:loaded_AlignMapsPlugin = 'no'
-let g:fuf_modesDisable = []
-let g:SuperTabLongestHighlight = 0
 let &termencoding=&encoding
+
+" allow MRU command
+let g:fuf_modesDisable = []
 
 " Don't report error of C++ lambadas
 let c_no_curly_error=1
