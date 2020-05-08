@@ -47,6 +47,7 @@ link_and_backup .tools_aliases bash/.tools_aliases
 link_and_backup bin/rename bin/rename
 link_and_backup bin/proxyon bin/proxyon
 link_and_backup bin/proxyoff bin/proxyoff
+link_and_backup bin/vn bin/vn
 if [[ $PLATFORM != 'cygwin' ]]; then
   link_and_backup .gitconfig git/.gitconfig
 fi
