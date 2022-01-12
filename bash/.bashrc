@@ -3,6 +3,9 @@
 # Extra tools
 source ~/.tools_aliases
 
+# Suppress the zsh warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
 # Bash settings
 export CLICOLOR=1
 export HISTSIZE=3000

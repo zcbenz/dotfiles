@@ -19,3 +19,7 @@
 	clean = git-lfs clean %f
 	smudge = git-lfs smudge %f
 	required = true
+[receive]
+	denyCurrentBranch = updateInstead
+[pull]
+	rebase = false
