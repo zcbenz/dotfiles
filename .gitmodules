@@ -10,9 +10,6 @@
 [submodule "vim/.vim/bundle/enhanced-commentify"]
 	path = vim/.vim/bundle/enhanced-commentify
 	url = https://github.com/vim-scripts/EnhCommentify.vim.git
-[submodule "vim/.vim/bundle/fuzzy-finder"]
-	path = vim/.vim/bundle/fuzzy-finder
-	url = https://github.com/vim-scripts/FuzzyFinder.git
 [submodule "vim/.vim/bundle/splitjoin"]
 	path = vim/.vim/bundle/splitjoin
 	url = https://github.com/AndrewRadev/splitjoin.vim

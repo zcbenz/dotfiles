@@ -30,10 +30,6 @@ set undolevels=1000      " use many muchos levels of undo
 filetype plugin on
 filetype indent on
 
-" key maps
-nnoremap <leader>g :FufMruFile<cr>
-nnoremap <leader>f :FufFile<cr>
-
 " tabpage binding
 nnoremap <leader>1 1gt<cr>
 nnoremap <leader>2 2gt<cr>
@@ -55,8 +51,17 @@ let &termencoding=&encoding
 " allow MRU command
 let g:fuf_modesDisable = []
 
-" Don't report error of C++ lambadas
+" don't report error of C++ lambadas
 let c_no_curly_error=1
+
+" ignore files in .gitignore in ctrlp
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+" ignore temp files in mru
+let g:ctrlp_mruf_exclude = '/tmp/.*\|/var/folders/.*|/private/var/folders/.*'
+
+" key maps
+nnoremap <leader>g :CtrlPMRU<cr>
+nnoremap <leader>f :CtrlP<cr>
 
 " use flavored-markdown by default
 augroup markdown
@@ -64,7 +69,7 @@ augroup markdown
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
-" Map .mm to Objective-C++.
+" map .mm to Objective-C++.
 autocmd BufNewFile,BufRead *.mm set syntax=objcpp
 
 call pathogen#infect()
