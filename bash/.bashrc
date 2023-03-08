@@ -64,6 +64,3 @@ fi
 if [ -e "$HOME/bin/set-env" ]; then
   source "$HOME/bin/set-env"
 fi
-
-# Show me fortune at last
-[ -z $1 ] && fortune

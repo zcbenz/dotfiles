@@ -107,10 +107,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
   progress 'Installing other useful tools'
   has_command tree || cross_install tree
   has_command wget || cross_install wget
-  has_command fortune || cross_install fortune
-  has_command mosh || cross_install mobile-shell
   has_command ohcount || cross_install ohcount
-  has_command s3cmd || cross_install s3cmd
   has_command gsed || cross_install gnu-sed
   has_command ag || cross_install the_silver_searcher
   has_command autojump || cross_install autojump
@@ -119,25 +116,12 @@ if [[ $PLATFORM == 'darwin' ]]; then
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
   progress 'Installing system tools'
   has_command tree || cross_install tree
-  has_command fortune || cross_install fortune-mod
-  has_command s3cmd || cross_install s3cmd
   has_command vim || cross_install vim
   has_command autojump || cross_install autojump
-  has_command gconftool-2 || cross_install gconf2
 
   if [[ $OS == 'Ubuntu' ]]; then
-    if ! has_command mosh; then
-      cross_install python-software-properties software-properties-common
-      sudo add-apt-repository ppa:keithw/mosh
-      sudo apt-get update
-      cross_install mosh
-    fi
     has_command ohcount || cross_install ohcount
     has_command g++ || cross_install build-essential automake autotools-dev
-  elif [[ $OS == 'Fedora' ]]; then
-    if ! has_command mosh; then
-      cross_install mosh
-    fi
   fi
   success "Tools installed"
 elif [[ $PLATFORM == 'cygwin' ]]; then
@@ -153,7 +137,7 @@ if [[ $PLATFORM == 'linux-gnu' ]]; then
   source "$SOURCE/script/solarize" light
 fi
 
-source "$TARGET/.custom_bashrc" nofortune
+source "$TARGET/.custom_bashrc"
 success 'Load new environment'
 
 exit 0

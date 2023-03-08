@@ -23,3 +23,5 @@
 	denyCurrentBranch = updateInstead
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
