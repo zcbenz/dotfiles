@@ -21,7 +21,12 @@ fi
 
 # kitten#1575:~$
 if [[ "$OS" != 'cygwin' ]]; then
-  PS1='${debian_chroot:+($debian_chroot)}\h#\!:\w\[\e[0;33m\]\[`tput bold`\]\$\[`tput rmso`\]\[\e[m\] '
+  if [ `hostname -s` = "m3" ]; then
+    HOST_COLOR="[0;35m"  # Magenta color for "m3"
+  else
+    HOST_COLOR="[0;30m"  # Black
+  fi
+  PS1='${debian_chroot:+($debian_chroot)}\[\e$HOST_COLOR\]\h\[\e[m\]#\!:\w\[\e[0;33m\]\$\[`tput rmso`\]\[\e[m\] '
 fi
 
 # I use vim!
