@@ -54,6 +54,9 @@ complete -o default -o nospace -F _jump jump
 # OS specific commands
 if [[ $OS == 'linux-gnu' ]]; then
   source /usr/share/autojump/autojump.sh
+elif [[ $OS == 'darwin' ]]; then
+  [ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+  [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 elif [[ $OS == 'cygwin' ]]; then
   export LC_ALL='en_US.UTF-8'
   # Force UTF-8 code page.

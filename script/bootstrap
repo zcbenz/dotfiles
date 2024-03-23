@@ -82,7 +82,8 @@ fi
 
 if [[ $PLATFORM == 'darwin' ]] && ! has_command brew; then
   progress 'Installng Homebrew'
-  echo '' | ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
   success "Homebrew installed"
   brew update
 fi
@@ -97,6 +98,7 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command tree || cross_install tree
   has_command wget || cross_install wget
   has_command ohcount || cross_install ohcount
+  has_command gsed || cross_install gnu-sed
   has_command ag || cross_install the_silver_searcher
   has_command autojump || cross_install autojump
   has_command realpath || cross_install coreutils
