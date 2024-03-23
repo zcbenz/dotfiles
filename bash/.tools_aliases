@@ -4,7 +4,6 @@ export PATH=~/bin:$PATH
 
 # Build Electron.
 alias eb="~/codes/be/build.js"
-alias et="~/codes/be/test.js"
 
 # Convient settings
 alias l='ls -p'
