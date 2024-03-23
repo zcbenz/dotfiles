@@ -69,7 +69,10 @@ augroup markdown
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
-" map .mm to Objective-C++.
+" map .mm to Objective-C++
 autocmd BufNewFile,BufRead *.mm set syntax=objcpp
+
+" no force python paddings
+let g:python_recommended_style = 0
 
 call pathogen#infect()
