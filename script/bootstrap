@@ -45,18 +45,11 @@ link_and_backup .vimrc vim/.vimrc
 link_and_backup .custom_bashrc bash/.bashrc
 link_and_backup .tools_aliases bash/.tools_aliases
 link_and_backup bin/rename bin/rename
-link_and_backup bin/proxyon bin/proxyon
-link_and_backup bin/proxyoff bin/proxyoff
 link_and_backup bin/vn bin/vn
 if [[ $PLATFORM != 'cygwin' ]]; then
   link_and_backup .gitconfig git/.gitconfig
 fi
-if [[ $PLATFORM == 'darwin' ]]; then
-  link_and_backup bin/darwin/adb bin/darwin/adb
-  link_and_backup bin/darwin/fastboot bin/darwin/fastboot
-  link_and_backup bin/darwin/battery bin/darwin/battery
-  link_and_backup bin/darwin/video_to_gif_osx bin/darwin/video_to_gif_osx
-elif [[ $PLATFORM == 'cygwin' ]]; then
+if [[ $PLATFORM == 'cygwin' ]]; then
   link_and_backup bin/sudo bin/sudo
   link_and_backup bin/pbcopy bin/pbcopy
   link_and_backup bin/pbpaste bin/pbpaste
@@ -65,9 +58,6 @@ elif [[ $PLATFORM == 'cygwin' ]]; then
 fi
 # OS X doesn't have bash_profile on default
 [ -e "$TARGET/.bash_profile" ] || ln -s "$TARGET/.bashrc" "$TARGET/.bash_profile"
-# .vnc/xstartup vaires on different system, so just copy on need
-[ -e "$TARGET/.vnc" ] || mkdir "$TARGET/.vnc"
-[ -e "$TARGET/.vnc/xstartup" ] || cp "$SOURCE/vnc/xstartup" "$TARGET/.vnc/xstartup"
 success "Link configuration files"
 
 LASTLINE_OF_BASHRC=$(tail -n 1 "$TARGET/.bashrc" 2>/dev/null)
@@ -93,7 +83,6 @@ fi
 if [[ $PLATFORM == 'darwin' ]] && ! has_command brew; then
   progress 'Installng Homebrew'
   echo '' | ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
-  brew install git
   success "Homebrew installed"
   brew update
 fi
@@ -108,7 +97,6 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command tree || cross_install tree
   has_command wget || cross_install wget
   has_command ohcount || cross_install ohcount
-  has_command gsed || cross_install gnu-sed
   has_command ag || cross_install the_silver_searcher
   has_command autojump || cross_install autojump
   has_command realpath || cross_install coreutils
@@ -121,7 +109,7 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
 
   if [[ $OS == 'Ubuntu' ]]; then
     has_command ohcount || cross_install ohcount
-    has_command g++ || cross_install build-essential automake autotools-dev
+    has_command g++ || cross_install build-essential
   fi
   success "Tools installed"
 elif [[ $PLATFORM == 'cygwin' ]]; then
