@@ -53,7 +53,7 @@ if [[ $PLATFORM == 'cygwin' ]]; then
   link_and_backup bin/sudo bin/sudo
   link_and_backup bin/pbcopy bin/pbcopy
   link_and_backup bin/pbpaste bin/pbpaste
-  link_and_backup bin/ag bin/ag
+  link_and_backup bin/vsdev bin/vsdev
   link_and_backup .minttyrc misc/.minttyrc
 fi
 # OS X doesn't have bash_profile on default

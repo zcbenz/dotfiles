@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+# Run following command in cygwin to add VS tools to PATH:
+# source `which vsdev`
+
+query_vcvarsall() {
+  local envars=$*
+  (cd '/cygdrive/c/Program Files/Microsoft Visual Studio/2022/Community/Common7/Tools/' &&
+   cmd /c "VsDevCmd.bat -no_logo && c:/cygwin/bin/bash -c 'printenv $envars'")
+}
+export PATH="$(query_vcvarsall PATH)"
