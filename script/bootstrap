@@ -102,12 +102,16 @@ if [[ $PLATFORM == 'darwin' ]]; then
   has_command ag || cross_install the_silver_searcher
   has_command autojump || cross_install autojump
   has_command realpath || cross_install coreutils
+  has_command cmake || cross_install cmake
+  has_command ccache || cross_install ccache
   success "Tools installed"
 elif [[ $PLATFORM == 'linux-gnu' ]]; then
   progress 'Installing system tools'
   has_command tree || cross_install tree
   has_command vim || cross_install vim
   has_command autojump || cross_install autojump
+  has_command cmake || cross_install cmake
+  has_command ccache || cross_install ccache
 
   if [[ $OS == 'Ubuntu' ]]; then
     has_command ohcount || cross_install ohcount
