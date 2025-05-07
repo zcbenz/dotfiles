@@ -72,6 +72,11 @@ augroup END
 " map .mm to Objective-C++
 autocmd BufNewFile,BufRead *.mm set syntax=objcpp
 
+" load c++ snippets in cuda
+let g:snipMate = get(g:, 'snipMate', {})
+let g:snipMate.scope_aliases = {}
+let g:snipMate.scope_aliases['cuda'] = 'cpp'
+
 " no force python paddings
 let g:python_recommended_style = 0
 
