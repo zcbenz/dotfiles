@@ -21,19 +21,19 @@ fi
 
 # Host name.
 if [ -z "$BOLT_TASK_ID" ]; then
-  HOSTNAME=`hostname -s`
+  COMPUTER_NAME=`hostname -s`
 else
-  HOSTNAME="$BOLT_TASK_ID"
+  COMPUTER_NAME="bolt-$BOLT_TASK_ID"
 fi
 
 # kitten#1575:~$
 if [[ "$OS" != 'cygwin' ]]; then
-  if [ "$HOSTNAME" == "air" ]; then
+  if [ "$COMPUTER_NAME" == "air" ]; then
     HOST_COLOR="[0;30m"  # Black
   else
     HOST_COLOR="[0;35m"  # Magenta color for remote hosts
   fi
-  PS1='${debian_chroot:+($debian_chroot)}\[\e$HOST_COLOR\]$HOSTNAME\[\e[m\]#\!:\w\[\e[0;33m\]\$\[`tput rmso`\]\[\e[m\] '
+  PS1='${debian_chroot:+($debian_chroot)}\[\e$HOST_COLOR\]$COMPUTER_NAME\[\e[m\]#\!:\w\[\e[0;33m\]\$\[`tput rmso`\]\[\e[m\] '
 fi
 
 # I use vim!
