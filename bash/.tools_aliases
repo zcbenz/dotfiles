@@ -2,9 +2,6 @@
 
 export PATH=~/bin:$PATH
 
-# Build Electron.
-alias eb="~/codes/be/build.js"
-
 # Convient settings
 alias l='ls -p'
 alias la='ls -a'
@@ -14,6 +11,7 @@ alias sudo='sudo env PATH=$PATH' # sudo with current PATH
 alias cn='env LANG=zh_CN.UTF-8 '
 alias gd="git-branch-delete"
 alias gs="switch-branch"
+alias ur="uv run --no-project"
 function mkcd ()
 {
     mkdir $1 && cd $1
