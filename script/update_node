@@ -1,14 +1,15 @@
 #!/bin/bash
 
-if ! DOWNLOAD_PAGE=$(curl -fsSkL https://nodejs.org/en/download/); then
+if ! DOWNLOAD_PAGE=$(curl -s https://nodejs.org/dist/latest/); then
   exit 1;
 fi
 
-NODE_VERSION=v8.2.1
+NODE_VERSION='v22.17.0'
 
-NODE_VERSION=$(echo "$DOWNLOAD_PAGE" \
-               | awk '/data-version=/ { print }' \
-               | sed 's/.*data-version="\(.*\)".*/\1/g')
+NODE_VERSION=$(echo "$DOWNLOAD_PAGE" | grep -o 'node-v[^-]*' \
+                                     | head -1 \
+                                     | awk -F 'node-|.tar.gz' '{print $2}' \
+                                     | cut -d'-' -f 1)
 
 # Test system's node version if we have node installed
 if command -v node >/dev/null 2>&1; then
@@ -39,6 +40,8 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
   else
     if uname -a | grep 'x86_64' > /dev/null ; then
       NODE_ARCH=x64
+    elif uname -a | grep 'arm64' > /dev/null ; then
+      NODE_ARCH=arm64
     else
       NODE_ARCH=x86
     fi
@@ -67,12 +70,11 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
     rm $NODE_DIST_NAME/CHANGELOG.md
     rm $NODE_DIST_NAME/LICENSE
     rm $NODE_DIST_NAME/README.md
-    sudo cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
-  fi
-
-  # Fix the npmlog not found bug under OS X
-  if [[ $NODE_PLATFORM == 'darwin' ]]; then
-    curl -fsSkL https://npmjs.org/install.sh | sudo sh > /dev/null || exit 1
+    if [ $(id -u) -ne 0 ]; then
+      sudo cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
+    else
+      cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
+    fi
   fi
 
   # Clean

@@ -122,6 +122,17 @@ elif [[ $PLATFORM == 'cygwin' ]]; then
   success 'Create convenient symbol links'
 fi
 
+progress 'Updating node'
+if source "$SOURCE/script/update_node"; then
+  if [[ $NODE_VERSION == $SYSTEM_NODE_VERSION ]]; then
+    success 'Current node is already latest'
+  else
+    success "Node is updated to $NODE_VERSION"
+  fi
+else
+  fail 'Cannot update node'
+fi
+
 if has_command sudo; then
   cp /etc/hosts $BACKUP
   bash $SOURCE/script/update_hosts $SOURCE/etc/hosts
