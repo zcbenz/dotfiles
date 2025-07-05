@@ -25,14 +25,20 @@ function has_command {
   if command -v $1 >/dev/null 2>&1
   then return 0
   else return 1
-  fi 
+  fi
 }
 
 function cross_install {
+  if [[ $USER != 'root' ]]; then
+    SUDO='sudo '
+  else
+    SUDO=''
+  fi
+
   if has_command yum; then
-    INSTALL='sudo yum install'
-  elif has_command apt-get; then
-    INSTALL='sudo DEBIAN_FRONTEND=noninteractive apt-get -q -y install'
+    INSTALL="${SUDO}yum install"
+  elif has_command apt; then
+    INSTALL="${SUDO}apt install -y"
   elif has_command brew; then
     INSTALL='brew install'
   else

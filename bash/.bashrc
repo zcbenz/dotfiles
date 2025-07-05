@@ -16,17 +16,24 @@ shopt -s checkwinsize
 
 # Set variable identifying the chroot you work in.
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# Host name.
+if [ -z "$BOLT_TASK_ID" ]; then
+  HOSTNAME=`hostname -s`
+else
+  HOSTNAME="$BOLT_TASK_ID"
 fi
 
 # kitten#1575:~$
 if [[ "$OS" != 'cygwin' ]]; then
-  if [ `hostname -s` = "m3" ]; then
+  if [ "$HOSTNAME" = "m3" ]; then
     HOST_COLOR="[0;35m"  # Magenta color for "m3"
   else
     HOST_COLOR="[0;30m"  # Black
   fi
-  PS1='${debian_chroot:+($debian_chroot)}\[\e$HOST_COLOR\]\h\[\e[m\]#\!:\w\[\e[0;33m\]\$\[`tput rmso`\]\[\e[m\] '
+  PS1='${debian_chroot:+($debian_chroot)}\[\e$HOST_COLOR\]$HOSTNAME\[\e[m\]#\!:\w\[\e[0;33m\]\$\[`tput rmso`\]\[\e[m\] '
 fi
 
 # I use vim!

@@ -56,8 +56,6 @@ if [[ $PLATFORM == 'cygwin' ]]; then
   link_and_backup bin/vcvarsall bin/vcvarsall
   link_and_backup .minttyrc misc/.minttyrc
 fi
-# OS X doesn't have bash_profile on default
-[ -e "$TARGET/.bash_profile" ] || ln -s "$TARGET/.bashrc" "$TARGET/.bash_profile"
 success "Link configuration files"
 
 LASTLINE_OF_BASHRC=$(tail -n 1 "$TARGET/.bashrc" 2>/dev/null)
@@ -70,7 +68,7 @@ elif [[ $LASTLINE_OF_BASHRC != $LASTLINE_TO_BE ]]; then
   success "Inject $TARGET_LITERAL/.bashrc"
 fi
 
-if [[ $PLATFORM != 'cygwin' ]]; then
+if [[ $PLATFORM != 'cygwin' ]] && [[ $USER != 'root' ]]; then
   SUDOER_LINE="$USER  ALL=(ALL)       NOPASSWD: ALL"
   if ! sudo grep -q "$SUDOER_LINE" /etc/sudoers; then
     sudo cp /etc/sudoers $BACKUP
@@ -109,6 +107,7 @@ elif [[ $PLATFORM == 'linux-gnu' ]]; then
   progress 'Installing system tools'
   has_command tree || cross_install tree
   has_command vim || cross_install vim
+  has_command ag || cross_install silversearcher-ag
   has_command autojump || cross_install autojump
   has_command cmake || cross_install cmake
   has_command ccache || cross_install ccache
@@ -123,12 +122,14 @@ elif [[ $PLATFORM == 'cygwin' ]]; then
   success 'Create convenient symbol links'
 fi
 
-cp /etc/hosts $BACKUP
-bash $SOURCE/script/update_hosts $SOURCE/etc/hosts
-success 'Update hosts'
+if [[ $USER != 'root' ]]; then
+  cp /etc/hosts $BACKUP
+  bash $SOURCE/script/update_hosts $SOURCE/etc/hosts
+  success 'Update hosts'
 
-if [[ $PLATFORM == 'linux-gnu' ]]; then
-  source "$SOURCE/script/solarize" light
+  if [[ $PLATFORM == 'linux-gnu' ]]; then
+    source "$SOURCE/script/solarize" light
+  fi
 fi
 
 source "$TARGET/.custom_bashrc"
