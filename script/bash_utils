@@ -29,7 +29,7 @@ function has_command {
 }
 
 function cross_install {
-  if [[ $USER != 'root' ]]; then
+  if has_command sudo; then
     SUDO='sudo '
   else
     SUDO=''

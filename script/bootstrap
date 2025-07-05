@@ -68,7 +68,7 @@ elif [[ $LASTLINE_OF_BASHRC != $LASTLINE_TO_BE ]]; then
   success "Inject $TARGET_LITERAL/.bashrc"
 fi
 
-if [[ $PLATFORM != 'cygwin' ]] && [[ $USER != 'root' ]]; then
+if [[ $PLATFORM != 'cygwin' ]] && has_command sudo; then
   SUDOER_LINE="$USER  ALL=(ALL)       NOPASSWD: ALL"
   if ! sudo grep -q "$SUDOER_LINE" /etc/sudoers; then
     sudo cp /etc/sudoers $BACKUP
@@ -122,7 +122,7 @@ elif [[ $PLATFORM == 'cygwin' ]]; then
   success 'Create convenient symbol links'
 fi
 
-if [[ $USER != 'root' ]]; then
+if has_command sudo; then
   cp /etc/hosts $BACKUP
   bash $SOURCE/script/update_hosts $SOURCE/etc/hosts
   success 'Update hosts'
