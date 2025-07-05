@@ -28,10 +28,10 @@ fi
 
 # kitten#1575:~$
 if [[ "$OS" != 'cygwin' ]]; then
-  if [ "$HOSTNAME" = "m3" ]; then
-    HOST_COLOR="[0;35m"  # Magenta color for "m3"
-  else
+  if [ "$HOSTNAME" == "air" ]; then
     HOST_COLOR="[0;30m"  # Black
+  else
+    HOST_COLOR="[0;35m"  # Magenta color for remote hosts
   fi
   PS1='${debian_chroot:+($debian_chroot)}\[\e$HOST_COLOR\]$HOSTNAME\[\e[m\]#\!:\w\[\e[0;33m\]\$\[`tput rmso`\]\[\e[m\] '
 fi
