@@ -77,7 +77,4 @@ let g:snipMate = get(g:, 'snipMate', {})
 let g:snipMate.scope_aliases = {}
 let g:snipMate.scope_aliases['cuda'] = 'cpp'
 
-" no force python paddings
-let g:python_recommended_style = 0
-
 call pathogen#infect()
