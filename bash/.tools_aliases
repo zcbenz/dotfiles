@@ -12,6 +12,7 @@ alias cn='env LANG=zh_CN.UTF-8 '
 alias gd="git-branch-delete"
 alias gs="switch-branch"
 alias ur="uv run --no-project"
+alias vcvars='eval "$(bash ~/dotfiles/bin/vcvarsall x64)"'
 function mkcd ()
 {
     mkdir $1 && cd $1
