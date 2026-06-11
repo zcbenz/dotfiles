@@ -71,9 +71,9 @@ if [[ $NODE_VERSION != $SYSTEM_NODE_VERSION ]]; then
     rm $NODE_DIST_NAME/LICENSE
     rm $NODE_DIST_NAME/README.md
     if [ $(id -u) -ne 0 ]; then
-      sudo cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
+      cp -r $NODE_DIST_NAME/* ~/.local/ || exit 1
     else
-      cp -r $NODE_DIST_NAME/* /usr/local/ || exit 1
+      cp -r $NODE_DIST_NAME/* ~/.local/ || exit 1
     fi
   fi
 
